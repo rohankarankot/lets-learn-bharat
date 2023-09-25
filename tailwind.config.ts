@@ -28,7 +28,36 @@ const config: Config = {
   darkMode: "media",
 
   theme: {
+    screens: {
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
+    },
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      white: "#ffffff",
+      purple: "#3f3cbb",
+      midnight: "#121063",
+      metal: "#565584",
+      tahiti: "#3ab7bf",
+      silver: "#ecebff",
+      bubbleGum: "#ff77e9",
+      bermuda: "#78dcca",
+    },
+    fontFamily: {
+      sans: ["Graphik", "sans-serif"],
+      serif: ["Merriweather", "serif"],
+    },
     extend: {
+      spacing: {
+        "128": "32rem",
+        "144": "36rem",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -36,6 +65,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [
+    require("flowbite/plugin")({
+      charts: true,
+      forms: true,
+      tooltips: true,
+    }),
+  ],
 }
 export default config
