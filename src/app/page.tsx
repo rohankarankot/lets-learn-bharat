@@ -1,4 +1,13 @@
+"use client"
+
+import "flowbite"
+import { initFlowbite } from "flowbite"
+import { useEffect } from "react"
 export default function Home() {
+  useEffect(() => {
+    initFlowbite()
+  }, [])
+
   return (
     <div
       style={{
