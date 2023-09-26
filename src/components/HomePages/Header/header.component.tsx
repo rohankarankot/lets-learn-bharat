@@ -1,15 +1,16 @@
-"use client";
+/* eslint-disable @next/next/no-img-element */
+"use client"
 
-import Input from "@/components/Input/input.component";
-import { useState } from "react";
+import Input from "@/components/Input/input.component"
+import { useState } from "react"
 
 const Header = () => {
-  const [searchData, setSearchData] = useState("");
+  const [searchData, setSearchData] = useState("")
 
   const handleChange = (event: any) => {
-    const { value } = event.target; // You don't need to destructure event.target.value
-    setSearchData(value);
-  };
+    const { value } = event.target // You don't need to destructure event.target.value
+    setSearchData(value)
+  }
 
   return (
     <div className="bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
@@ -26,11 +27,11 @@ const Header = () => {
               className="h-6"
               alt="Search Icon"
             />
-          }//prefix  here it is not compulsory
+          } //prefix  here it is not compulsory
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
