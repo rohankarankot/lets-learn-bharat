@@ -1,4 +1,4 @@
-import { CustomTextProps } from "../utils/TypeDeclear/type";
+import { CustomTextProps } from "../utils/declareType/type";
 
 const Text = ({text,textType,className}:CustomTextProps) => {
  switch(textType){

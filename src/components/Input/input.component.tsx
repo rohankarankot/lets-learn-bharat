@@ -1,4 +1,4 @@
-import { InputProps } from "../utils/TypeDeclear/type"; //here typescript declerataion in separate folder
+import { InputProps } from "../utils/declareType/type"; //here typescript declerataion in separate folder
 
 const Input = ({
   name,
