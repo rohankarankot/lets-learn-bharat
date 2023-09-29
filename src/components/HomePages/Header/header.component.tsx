@@ -45,6 +45,7 @@ const Header = () => {
           className="bg-tahiti h-[40px] w-[120px]  rounded-[9px]"
           fontSize="12px"
           txtColor={"inherit"}
+          isButton={true}
           onClick={handlePress}
         >
           Visit Courses
