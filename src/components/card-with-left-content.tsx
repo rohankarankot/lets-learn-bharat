@@ -3,8 +3,7 @@
 import React, { Fragment, useState } from 'react'
 import data from "../mock-data/card.json"
 import { AddIcon, AddedIcon } from './customIcon'
-import { CONSTANT } from './constant'
-import { IMAGES } from './utils/constant'
+import { CONSTANT, IMAGES } from './utils/constant'
 import Button from './CustomButton/Button.component'
 
 interface CardWithLeftContent {
