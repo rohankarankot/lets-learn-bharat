@@ -43,7 +43,7 @@ const Tab = () => {
                 <img
                   src={allData.image}
                   alt="///"
-                  className={isTab ? "h-[15px]" : ""}
+                  className={isTab ? "h-[15px]" : "hover:scale-75"}
                 />
               ) : (
                 index <= 1 && <img src={allData.image} className={"h-[20px]"} />
