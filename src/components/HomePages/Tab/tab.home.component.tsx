@@ -1,7 +1,7 @@
-"use client";
-import Text from "@/components/CustomText/custom.component";
-import { Size } from "@/components/utils/Size/screen.Size";
-import { useState } from "react";
+"use client"
+import Text from "@/components/CustomText/custom.component"
+import { Size } from "@/components/utils/Size/screen.Size"
+import { useState } from "react"
 //this data for type of tab
 const data = [
   {
@@ -16,19 +16,19 @@ const data = [
   {
     image: "images/Vector (9).png",
   },
-];
+]
 //this tab use for search filter of course type
 const Tab = () => {
-  const { fullWidth, isMobile, isTab } = Size();
-  const [clickedData, setClickData] = useState(0);
+  const { fullWidth, isMobile, isTab } = Size()
+  const [clickedData, setClickData] = useState(0)
   const handleClick = (index: number) => {
-    setClickData(index);
-  };
+    setClickData(index)
+  }
   // const isMobile = fullWidth <= 768;
   //   const isTab = fullWidth > 768 && fullWidth < 1020;
   let classname =
-    "flex justify-evenly items-center bg-colors-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]  w-full";
-  console.log("isTab", isTab);
+    "flex justify-evenly items-center bg-colors-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]  w-full"
+  console.log("isTab", isTab)
   return (
     <div className="w-full">
       <div className={isTab ? `${classname} h-[8vh]` : `${classname} h-[16vh]`}>
@@ -37,19 +37,23 @@ const Tab = () => {
             <div
               onClick={() => handleClick(index)}
               key={index}
-            // className=""
+              // className=""
             >
               {!isMobile ? (
                 <img
                   src={allData.image}
                   alt="///"
-                  className={isTab ? "h-[15px]" : "hover:scale-75"}
+                  className={
+                    isTab
+                      ? "h-[15px]"
+                      : "hover:scale-75 transition-all duration-150"
+                  }
                 />
               ) : (
                 index <= 1 && <img src={allData.image} className={"h-[20px]"} />
               )}
             </div>
-          );
+          )
         })}
         {isMobile && (
           <ul className="list-none">
@@ -74,7 +78,7 @@ const Tab = () => {
         <Text text="Popular courses" textType="h1" className="text-2xl" />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Tab;
+export default Tab
