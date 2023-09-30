@@ -1,5 +1,7 @@
 "use client";
 import Input from "@/components/Input/input.component";
+import { Button } from "flowbite-react";
+import Image from "next/image";
 import React, { useState } from "react";
 
 const Login = () => {
@@ -8,7 +10,10 @@ const Login = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="">
+      <div className="flex flex-col gap-4 ">
+       <Button>
+       {/* // <Image/> */}
+       </Button>
         <Input
           onChange={() => {}}
           placeholder="Email"

@@ -11,7 +11,7 @@ const Input = ({
   width
 }: InputProps) => {
   return (
-    <div className={` flex h-[${height}] w-[${width}] items-center px-5 border-2 border-bermuda rounded-lg mt-[31px]`} >
+    <div className={` flex h-[${height}] w-[${width}] items-center px-5 border-2 border-bermuda rounded-lg `} >
        {prefix && (
         <div className="">
           {prefix}
