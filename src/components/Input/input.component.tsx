@@ -6,10 +6,12 @@ const Input = ({
   prefix,
   value,
   onChange,
-  className,
+ 
+  height ,
+  width
 }: InputProps) => {
   return (
-    <div className={` flex ${className} items-center`} >
+    <div className={` flex h-[${height}] w-[${width}] items-center px-5 border-2 border-bermuda rounded-lg mt-[31px]`} >
        {prefix && (
         <div className="">
           {prefix}

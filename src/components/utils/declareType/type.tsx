@@ -50,9 +50,9 @@ interface InputProps {
 
   value: string;
 
-  className: string;
-
-  prefix: any;
+  prefix?: any;
+  height:string;
+  width:string;
 
 }
 
