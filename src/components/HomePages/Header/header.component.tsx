@@ -37,14 +37,14 @@ const Header = () => {
           text="Explore what professionals like you are learning the most"
           textType="p"
           // className="text-center"
-          className="flex self-center w-[22rem] mt-[54px]"
+          className="flex self-center w-[22rem] mt-[45px]"
         />
       </div>
-      <div className="flex justify-end w-[70%]">
+      <div className="flex justify-end w-[65%]">
         <Button
-          className="bg-tahiti h-[40px] w-[120px]  rounded-[9px]"
-          fontSize="12px"
-          txtColor={"inherit"}
+         
+          fontSize="20px"
+          type="secondary"
           onClick={handlePress}
         >
           Visit Courses
