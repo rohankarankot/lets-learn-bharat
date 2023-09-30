@@ -44,7 +44,7 @@ const Header = () => {
         <Button
          
           fontSize="20px"
-          type="secondary"
+          type="primary"
           onClick={handlePress}
         >
           Visit Courses
