@@ -51,8 +51,11 @@ interface InputProps {
   value: string;
 
   prefix?: any;
-  height:string;
-  width:string;
+  height?:string;
+  width?:string;
+  
+type?:string;
+className?:string;
 
 }
 

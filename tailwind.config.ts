@@ -54,7 +54,7 @@ const config: Config = {
       silver: "#ecebff",
       bubbleGum: "#ff77e9",
       bermuda: "#78dcca",
-      btnColor:"#0E8585",
+      SurfieGreen:"#0E8585",
       
     },
     fontFamily: {

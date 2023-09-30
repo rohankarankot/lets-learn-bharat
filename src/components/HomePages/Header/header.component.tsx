@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Button from "@/components/CustomButton/Button.component";
+import { PrimaryBtn } from "@/components/CustomButton/Buttons";
 import Text from "@/components/CustomText/custom.component";
-import Input from "@/components/Input/input.component";
+import { SearchInput } from "@/components/Input/input.component";
 import { useState } from "react";
 
 const Header = () => {
@@ -16,8 +16,8 @@ const Header = () => {
   const handlePress = () => {};
   return (
     <div className="flex-1 bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
-      <div className="flex justify-center">
-        <Input //  use Custom input
+      <div className="flex justify-center my-[37px]">
+        <SearchInput //  use Custom input
           placeholder="Search"
           name="search"
           value={searchData}
@@ -43,14 +43,13 @@ const Header = () => {
         />
       </div>
       <div className="flex justify-end w-[65%]">
-        <Button
+        <PrimaryBtn
          
-          fontSize="20px"
-          type="primary"
+          className={''}
           onClick={handlePress}
         >
           Visit Courses
-        </Button>
+        </PrimaryBtn>
       </div>
     </div>
   );
