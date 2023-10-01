@@ -6,6 +6,8 @@ type HSLA = `hsla(${string})`;
 type VAR = `var(${string})`;
 // type str = "";
 type CssGlobals = "inherit" | "initial" | "revert" | "unset";
+
+
 export type Color =
   | "currentColor"
   | "transparent"
@@ -35,9 +37,10 @@ interface CustomTextProps {
 interface ButtonProps {
   children: string;
   className: string;
-  txtColor: Color;
+  txtColor?: string;
   fontSize: string;
-  onClick:Function
+  isButton: boolean
+  onClick :Function
 }
 
 export type { ButtonProps, CustomTextProps, InputProps };
