@@ -4,7 +4,8 @@ import React, { Fragment, useState } from 'react'
 import data from "../mock-data/card.json"
 import { AddIcon, AddedIcon } from './customIcon'
 import { CONSTANT, IMAGES } from './utils/constant'
-import Button from './CustomButton/Button.component'
+import { LinkBtn, SecondaryBtn } from './CustomButton/Buttons'
+// import Button from './CustomButton/Button.component'
 
 interface CardWithLeftContent {
     tag: string
@@ -20,7 +21,7 @@ interface CardWithLeftContent {
     ctaLabel: string
 }
 
-const CardWithLeftContent = () => {
+const CardWithLeftContent = ({data}:any) => {
     const [addItem, setAddItem] = useState<boolean>(false)
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const handleMouseOver = () =>{
@@ -31,7 +32,7 @@ const CardWithLeftContent = () => {
     }
     return (
         <Fragment>
-            <div style={{ width: "289px", height: "100%", }}
+            <div className='flex flex-col w-[289px] h-[100%] items-center gap-2'
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}>
                 <div className='shadow-3xl'>
@@ -99,15 +100,15 @@ const CardWithLeftContent = () => {
                                 }
                         </div>
                         <div className='flex justify-center py-7'>
-                            <Button className='border-2 rounded-md border-bermuda py-2 px-7 cursor-pointer text-base font-bold' fontSize='16px' txtColor='bermunda' isButton={true} onClick={()=>{}}>
+                            <SecondaryBtn className='border-2 rounded-md border-bermuda py-2 px-7 cursor-pointer text-base font-bold' fontSize='16px' txtColor='bermunda' isButton={true} onClick={()=>{}}>
                                     {data?.primaryAction}
-                            </Button>
+                            </SecondaryBtn>
                         </div>
                     </div>
                 </div>
-                <Button className="text-center text-base font-bold text-decoration: underline text-bermuda cursor-pointer -mt-4" fontSize='16px' isButton={false} onClick={()=>{alert("clickyyyy")}}>
+                <LinkBtn className="text-center text-base font-bold  cursor-pointer -mt-4" fontSize='16px' isButton={false} onClick={()=>{alert("clickyyyy")}}>
                     {data?.ctaLabel}
-                </Button>
+                </LinkBtn>
             </div>
         </Fragment>
     )

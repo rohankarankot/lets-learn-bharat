@@ -58,5 +58,7 @@ interface ButtonProps {
   onClick?: Function
   type: btnType
 }
-
-export type { ButtonProps, CustomTextProps, InputProps }
+interface CmsDataState{
+  cmsData:Array<Object>;
+}
+export type { ButtonProps, CustomTextProps, InputProps,CmsDataState }

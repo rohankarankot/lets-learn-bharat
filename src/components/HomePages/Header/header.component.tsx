@@ -22,7 +22,7 @@ const Header = () => {
           name="search"
           value={searchData}
           onChange={(event: any) => handleChange(event)}
-          //className="h-[7.042253521126761vh] w-[47.447916666666664vw] px-5 border-2 border-bermuda rounded-lg mt-[31px] "
+         
          height="7.042253521126761vh"
          width="47.447916666666664vw"
           prefix={
