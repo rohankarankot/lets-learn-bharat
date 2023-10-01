@@ -54,6 +54,11 @@ const config: Config = {
       silver: "#ecebff",
       bubbleGum: "#ff77e9",
       bermuda: "#78dcca",
+      chilly:"#CC0000",
+      pepermint: "#0A4A4A",
+      ash:"#868686",
+      offWhite:"#BFBFBF",
+      maroon:"#3C1C1C"
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
@@ -74,6 +79,9 @@ const config: Config = {
           'hero-pattern': "url('/images/vector-image.png')",
         
       },
+      boxShadow: {
+        '3xl': '1px 4px 5px rgba(0, 0, 0, 0.25)',
+      }
     },
   },
   plugins: [
