@@ -1,90 +1,62 @@
+type RGB = `rgb(${string})`
 
+type RGBA = `rgba(${string})`
 
-type RGB = `rgb(${string})`;
+type HEX = `#${string}`
 
-type RGBA = `rgba(${string})`;
+type HSL = `hsl(${string})`
 
-type HEX = `#${string}`;
+type HSLA = `hsla(${string})`
 
-type HSL = `hsl(${string})`;
-
-type HSLA = `hsla(${string})`;
-
-type VAR = `var(${string})`;
+type VAR = `var(${string})`
 
 // type str = "";
 
-type CssGlobals = "inherit" | "initial" | "revert" | "unset";
+type CssGlobals = "inherit" | "initial" | "revert" | "unset"
 
 export type Color =
-
   | "currentColor"
-
   | "transparent"
-
   | RGB
-
   | RGBA
-
   | HEX
-
   | HSL
-
   | HSLA
-
   | VAR
+  | CssGlobals
 
-  | CssGlobals;
-
-export type btnType = "primary" | "secondary" | "link";
+export type btnType = "primary" | "secondary" | "link"
 
 interface InputProps {
+  name: string
 
-  name: string;
+  placeholder: string
 
-  placeholder: string;
+  icon?: boolean
 
-  icon?: boolean;
+  onChange: any
 
-  onChange: any;
+  value: string
 
-  value: string;
+  prefix?: any
+  height?: string
+  width?: string
 
-  prefix?: any;
-  height?:string;
-  width?:string;
-  
-type?:string;
-className?:string;
-
+  type?: string
+  className?: string
 }
 
 interface CustomTextProps {
-
-  text: string;
-
-  textType?: string;
-
-  className: string;
-
+  text: string
+  textType?: string
+  className: string
 }
-
- 
 
 interface ButtonProps {
-
-  children: string;
-
-  fontSize?: string;
-
-  onClick?: Function;
-
-  type: btnType;
-
+  children: string
+  fontSize?: string
+  onClick?: Function
+  type: btnType
 }
 
- 
-
-export type { ButtonProps, CustomTextProps, InputProps };
-
- 
+export type { ButtonProps, CustomTextProps, InputProps }
