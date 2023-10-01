@@ -54,6 +54,7 @@ const config: Config = {
       silver: "#ecebff",
       bubbleGum: "#ff77e9",
       bermuda: "#78dcca",
+      SurfieGreen:"#0E8585", 
       chilly:"#CC0000",
       pepermint: "#0A4A4A",
       ash:"#868686",

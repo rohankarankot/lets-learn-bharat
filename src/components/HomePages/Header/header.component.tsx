@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Button from "@/components/CustomButton/Button.component";
+import { PrimaryBtn } from "@/components/CustomButton/Buttons";
 import Text from "@/components/CustomText/custom.component";
-import Input from "@/components/Input/input.component";
+import { SearchInput } from "@/components/Input/input.component";
 import { useState } from "react";
 
 const Header = () => {
@@ -16,13 +16,15 @@ const Header = () => {
   const handlePress = () => {};
   return (
     <div className="flex-1 bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
-      <div className="flex justify-center">
-        <Input //  use Custom input
+      <div className="flex justify-center my-[37px]">
+        <SearchInput //  use Custom input
           placeholder="Search"
           name="search"
           value={searchData}
           onChange={(event: any) => handleChange(event)}
-          className="h-[7.042253521126761vh] w-[47.447916666666664vw] px-5 border-2 border-bermuda rounded-lg mt-[31px] "
+          //className="h-[7.042253521126761vh] w-[47.447916666666664vw] px-5 border-2 border-bermuda rounded-lg mt-[31px] "
+         height="7.042253521126761vh"
+         width="47.447916666666664vw"
           prefix={
             <img
               src="/images/search-icon.png"
@@ -37,19 +39,17 @@ const Header = () => {
           text="Explore what professionals like you are learning the most"
           textType="p"
           // className="text-center"
-          className="flex self-center w-[22rem] mt-[54px]"
+          className="flex self-center w-[22rem] mt-[45px]"
         />
       </div>
-      <div className="flex justify-end w-[70%]">
-        <Button
-          className="bg-tahiti h-[40px] w-[120px]  rounded-[9px]"
-          fontSize="12px"
-          txtColor={"inherit"}
-          isButton={true}
+      <div className="flex justify-end w-[65%]">
+        <PrimaryBtn
+         
+          className={''}
           onClick={handlePress}
         >
           Visit Courses
-        </Button>
+        </PrimaryBtn>
       </div>
     </div>
   );

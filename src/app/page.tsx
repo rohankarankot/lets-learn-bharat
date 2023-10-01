@@ -11,9 +11,9 @@ export default function Home() {
   }, [])
 
   return (
-   <>
+   <div className="bg-pink">
    <Header/>
    <Tab/>
-   </>
+   </div>
   )
 }
