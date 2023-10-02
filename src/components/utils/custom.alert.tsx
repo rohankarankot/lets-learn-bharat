@@ -1,12 +1,12 @@
-"use client";
-import { initFlowbite } from "flowbite";
-import React, { useEffect } from "react";
+"use client"
+import { initFlowbite } from "flowbite"
+import React, { useEffect } from "react"
 
 const CustomAlert = () => {
   useEffect(() => {
-    initFlowbite();
+    initFlowbite()
     //dispatch(AllCmsData())
-  }, []);
+  }, [])
   return (
     <div
       id="alert-2"
@@ -46,15 +46,15 @@ const CustomAlert = () => {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
           />
         </svg>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CustomAlert;
+export default CustomAlert

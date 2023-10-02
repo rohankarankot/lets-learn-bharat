@@ -1,66 +1,44 @@
-"use client";
+"use client"
 import {
   PrimaryBtn,
   SecondaryBtn,
   LinkBtn,
-} from "@/components/CustomButton/Buttons";
-import { FormInput } from "@/components/Input/input.component";
+} from "@/components/CustomButton/Buttons"
+import { FormInput } from "@/components/Input/input.component"
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "firebase/auth";
-import Link from "next/link";
+} from "firebase/auth"
+import Link from "next/link"
 
-import React, { useEffect, useState } from "react";
-import { auth } from "../../../config/firebase.config";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react"
+import { auth } from "../../../config/firebase.config"
+import { useRouter } from "next/navigation"
+import { useDispatch, useSelector } from "react-redux"
+import { signIn } from "@/components/redux/slice/authentication.slice"
+
 const Login = () => {
-  const [form, setForm] = useState({
+  const dispatch = useDispatch()
+  const {
+    auth: { user },
+  } = useSelector((state: any) => state)
+  console.log("user>>", user)
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
-  });
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-
+  })
+  const router = useRouter()
   useEffect(() => {
-    const user = global?.window?.localStorage.getItem("userInfo");
+    const user = global?.window?.localStorage.getItem("userInfo")
     if (user != null) {
-      router.push("/");
+      router.push("/")
     }
-  }, []);
-
-  const handleRegister = (e: any) => {
-    e.preventDefault();
-    // createUserWithEmailAndPassword(auth, 'test@test.com', 'Password@sdf123')
-    // .then((userCredential) => {
-    //   // Signed up
-    //   const user = userCredential.user;
-    //   console.log('user', user)
-    //   // ...
-    // })
-    // .catch((error) => {
-    //   console.log('error', error)
-    //   const errorCode = error.code;
-    //   const errorMessage = error.message;
-    //   // ..
-    // });
-    setLoading(true);
-    signInWithEmailAndPassword(auth, "test@test.com", "Password@sdf123")
-      .then((userCredential) => {
-        // Signed in
-        const res: any = userCredential.user;
-        global?.window?.localStorage.setItem(
-          "userInfo",
-          JSON?.stringify({
-            token: res?.accessToken,
-            userId: res?.uid,
-          })
-        );
-        router.push("/");
-      })
-      .catch((error) => {})
-      .finally(() => setLoading(false));
-  };
+  }, [])
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    // validation logic
+    dispatch(signIn(formData?.email, formData?.password))
+  }
   return (
     <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto">
       {/* 
@@ -89,10 +67,10 @@ const Login = () => {
                   name="email"
                   type="text"
                   onChange={(e: any) => {
-                    setForm({ ...form, email: e.target.email });
+                    setFormData({ ...formData, email: e.target.value })
                   }}
                   placeholder="Email Address or username"
-                  value={form.email}
+                  value={formData.email}
                 />
               </div>
 
@@ -102,10 +80,10 @@ const Login = () => {
                   name="password"
                   type="text"
                   onChange={(e: any) => {
-                    setForm({ ...form, password: e.target.password });
+                    setFormData({ ...formData, password: e.target.value })
                   }}
                   placeholder="password"
-                  value={form.password}
+                  value={formData.password}
                 />
               </div>
 
@@ -119,8 +97,8 @@ const Login = () => {
                 <div>
                   <PrimaryBtn
                     className="text-white"
-                    onClick={(e: any) => handleRegister(e)}
-                    loading={loading}
+                    onClick={(e: any) => handleSubmit(e)}
+                    loading={false}
                   >
                     Login
                   </PrimaryBtn>
@@ -150,7 +128,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

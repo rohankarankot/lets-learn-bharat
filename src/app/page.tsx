@@ -11,17 +11,15 @@ import { useDispatch } from "react-redux"
 import { Provider } from "react-redux"
 // import { createContext } from "vm"
 export default function Home() {
-
   // let Context = createContext();
-
 
   return (
     <Provider store={store}>
-   <div className="bg-pink">
-   <Header/>
-   <Tab/>
-   <DataComponent/>
-   </div>
-   </Provider>
+      <div className="bg-pink">
+        <Header />
+        <Tab />
+        <DataComponent />
+      </div>
+    </Provider>
   )
 }
