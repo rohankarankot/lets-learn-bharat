@@ -44,6 +44,7 @@ interface InputProps {
 
   type?: string
   className?: string
+  rest?:any
 }
 
 interface CustomTextProps {

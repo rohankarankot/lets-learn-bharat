@@ -12,7 +12,7 @@ export const SearchInput = ({
 }: InputProps) => {
   return (
     <div
-      className={` flex h-[${height}] w-[${width}]  items-center px-5 border-2 border-bermuda rounded-lg `}
+      className={` flex h-[7.042253521126761vh] w-[47.447916666666664vw]  items-center px-5 border-2 border-bermuda rounded-lg `}
     >
       {prefix && <div className="">{prefix}</div>}
       <input
@@ -20,24 +20,26 @@ export const SearchInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={"w-[90%] h-[100%s] focus:outline-none"}
+        className={"w-[90%] h-[100%] focus:outline-none placeholder-offWhite font-bold text-base pl-2"}
       />
     </div>
   );
 };
 
 export const FormInput = ({
-  name,
   type,
   onChange,
   placeholder,
   value,
   className,
   prefix,
+  ...rest
 }: InputProps) => {
+  console.log('rest', rest)
   return (
     <input
       type={type}
+      {...rest}
       onChange={onChange}
       value={value}
       //required

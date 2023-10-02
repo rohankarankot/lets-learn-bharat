@@ -18,13 +18,10 @@ const Header = () => {
     <div className="flex-1 bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
       <div className="flex justify-center my-[37px]">
         <SearchInput //  use Custom input
-          placeholder="Search"
+          placeholder="Search for courses"
           name="search"
           value={searchData}
           onChange={(event: any) => handleChange(event)}
-         
-         height="7.042253521126761vh"
-         width="47.447916666666664vw"
           prefix={
             <img
               src="/images/search-icon.png"
@@ -39,7 +36,7 @@ const Header = () => {
           text="Explore what professionals like you are learning the most"
           textType="p"
           // className="text-center"
-          className="flex self-center w-[22rem] mt-[45px]"
+          className="flex self-center w-[22rem] mb-[25px] text-pepermint font-bold text-2xl"
         />
       </div>
       <div className="flex justify-end w-[65%]">

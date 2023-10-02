@@ -1,28 +1,37 @@
 "use client";
-import { IMAGES } from "@/components/utils/constant";
-import Wrapper from "@/components/utils/wrapper.component";
-import Image from "next/image";
+import {
+  PrimaryBtn,
+  SecondaryBtn,
+  LinkBtn,
+} from "@/components/CustomButton/Buttons";
+import { FormInput } from "@/components/Input/input.component";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import Link from "next/link";
-import React, { Fragment, useEffect, useState } from "react";
+
+import React, { useEffect, useState } from "react";
+import { auth } from "../../../config/firebase.config";
+import { useRouter } from "next/navigation";
 
 const Signup = () => {
-  const [formValues, setFormValue] = useState<any>({
-    first_name: "",
-    last_name: "",
+  const [form, setForm] = useState({
     email: "",
     password: "",
-    confirm_password: "",
+    cPassword:""
   });
-
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState<boolean>(false);
   const [disable, setDisable] = useState<boolean>(false)
 
   useEffect(() => {
     if (
-      formValues?.password?.length > 0 &&
-      formValues?.confirm_password?.length > 0
+      form?.password?.length > 0 &&
+      form?.cPassword?.length > 0
     ) {
-      if (formValues?.password === formValues?.confirm_password) {
+      if (form?.password === form?.cPassword) {
         setPasswordCheck(false);
         setDisable(false)
       } else {
@@ -30,172 +39,133 @@ const Signup = () => {
         setDisable(true)
       }
     }
-  }, [formValues?.password,formValues?.confirm_password]);
+  }, [form?.password,form?.cPassword])
 
-  const handleSubmit = (event: any) => {
+  const handleRegister = (event: any) => {
     if(passwordCheck){
       setDisable(true)
     }
-  };
+    event.preventDefault();
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, form?.email, form?.password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log('user', user)
+    })
+    .catch((error) => {
+      console.log('error', error)
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    })
+    .finally(() => setLoading(false));
+   router.push("/")
+  }
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
-    setFormValue((prev: any) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
-  };
+    console.log('event?.target?.value', event.target)
+    setForm({...form,[name]: value});
+  }
 
   return (
-    <Wrapper>
-      <section className="py-10 ">
-        <div className="h-full">
-          <h1 className="text-5xl text-center from-neutral-500 font-semibold pb-10">
-            CREATE AN ACCOUNT
-          </h1>
-          <h4 className="text-m text-center from-neutral-500 font-semibold pb-10">
-            Already have an account?{" "}
-            <Link href="/" className="text-purple-300 font-bold text-base">
-              Log in
-            </Link>
-          </h4>
-          {/* <!-- Left column container with background--> */}
-          <div className="g-6 flex  flex-wrap items-center justify-center lg:justify-between">
-            <div className="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
-              <Image
-                src={IMAGES?.FORM_IMAGE}
-                width={500}
-                height={500}
-                alt="form-image"
-              />
-            </div>
+    <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto">
+      {/* 
+        <SecondaryBtn className="text-white">second</SecondaryBtn>
+        <LinkBtn className="text-white">link</LinkBtn> */}
+      <div className="h-full">
+        <h1 className="text-3xl text-center text-SurfieGreen font-semibold">
+          Register Yourself
+        </h1>
+        {/* <!-- Left column container with background--> */}
+        <div className="g-6 flex  flex-wrap items-center justify-center lg:justify-between">
+          <div className="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
+            <img
+              src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              className="w-full"
+              alt="Sample image"
+            />
+          </div>
 
-            {/* <!-- Right column container --> */}
-            <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-              <form onSubmit={handleSubmit}>
-                <div className="grid gap-4 mb-4">
-                  <div>
-                    <label
-                      htmlFor="first_name"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-                    >
-                      First name
-                    </label>
-                    <input
-                      type="text"
-                      name="first_name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Please enter your first name"
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="last_name"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-                    >
-                      Last name
-                    </label>
-                    <input
-                      type="text"
-                      name="last_name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Please enter your last name"
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+          {/* <!-- Right column container --> */}
+          <div className="mb-12 md:mb-0  lg:w-5/12 xl:w-5/12">
+            <form>
+              {/* <!-- identifier input --> */}
+              <div className="relative mb-6" data-te-input-wrapper-init>
+                <FormInput
+                  name="email"
+                  type="text"
+                  onChange={handleChange}
+                  placeholder="Email Address or username"
+                  value={form.email}
+                />
+              </div>
+
+              {/* <!-- Password input --> */}
+              <div className="relative mb-6" data-te-input-wrapper-init>
+                <FormInput
+                  name="password"
+                  type="text"
+                  onChange={handleChange}
+                  placeholder="password"
+                  value={form.password}
+                />
+              </div>
+              {/* <!-- Confirm Password input --> */}
+              <div className="relative mb-6" data-te-input-wrapper-init>
+                <FormInput
+                  name="cPassword"
+                  type="text"
+                  onChange={handleChange}
+                  placeholder="confirm password"
+                  value={form.cPassword}
+                />
+              </div>
+              {passwordCheck && <p className="text-red-600">Your password and confirm password should match.</p>}
+
+
+
+              <div className="mb-6 flex items-center justify-between">
+                {/* <!--Forgot password link--> */}
+                <a href="#!">Forgot password?</a>
+              </div>
+
+              {/* <!-- Login button --> */}
+              <div className="text-center lg:text-left">
+                <div>
+                  <PrimaryBtn
+                    className="text-white"
+                    onClick={handleRegister}
+                    loading={loading}
                   >
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Please enter you email"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    Lets Go
+                  </PrimaryBtn>
+
+                  <br />
+
+                  <a
+                    className="inline-flex  border-0 py-2 focus:outline-none  rounded cursor-pointer"
+                    onClick={() => {}}
                   >
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="•••••••••"
-                    onChange={handleChange}
-                    required
-                  />
+                    populate guest credentials
+                  </a>
                 </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="confirm_password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-                  >
-                    Confirm password
-                  </label>
-                  <input
-                    type="password"
-                    name="confirm_password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="•••••••••"
-                    onChange={handleChange}
-                    required
-                  />
-                  {passwordCheck && <p className="text-red-600">Your password and confirm password should match.</p>}
-                </div>
-                <div className="flex items-start mb-6 mt-8">
-                  <div className="flex items-center h-5">
-                    <input
-                      name="remember"
-                      type="checkbox"
-                      value=""
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="remember"
-                      className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >
-                      I agree with the{" "}
-                      <a href="#" className="text-purple-700 hover:underline ">
-                        terms and conditions
-                      </a>
-                      .
-                    </label>
-                  </div>
-                </div>
-                <div className="flex justify-center">
-                  <button
-                    type="submit"
-                    className={`text-white bg-purple-700 ${disable?"":"hover:bg-purple-700"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:purple-700 dark:${disable?"unset":"hover:bg-gray-300"}  ${disable?"bg-gray-300":"initial"}`}
-                    disabled={disable}
-                  >
-                    Submit
-                  </button>
-                </div>
-              </form>
-            </div>
+
+                {/* <!-- Register link --> */}
+                <Link href="/login">
+                  <p className="mb-0 mt-2 pt-1  font-semibold">
+                    Already Registered? 
+                    <span className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700">
+                      {" Login "}
+                    </span>
+                  </p>
+                </Link>
+              </div>
+            </form>
           </div>
         </div>
-      </section>
-    </Wrapper>
+      </div>
+    </div>
   );
 };
+
 export default Signup;

@@ -2,24 +2,26 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { signInWithEmailAndPassword, UserCredential } from "firebase/auth"
 import { auth } from "../../../../config/firebase.config"
 
+interface userProps {
+  accessToken: string
+  displayName: string
+  email: string
+  uid: string
+}
 interface AuthState {
-  user: {
-    accessToken: string
-    displayName: string
-    email: string
-    uid: string
-  }
+  user: userProps
   loading: boolean
   success: boolean
 }
+const initialUser: userProps = {
+  accessToken: "",
+  displayName: "",
+  email: "",
+  uid: "",
+}
 
 const initialState: AuthState = {
-  user: {
-    accessToken: "",
-    displayName: "",
-    email: "",
-    uid: "",
-  },
+  user: initialUser,
   loading: false,
   success: false,
 }
@@ -32,7 +34,6 @@ const authSlice = createSlice({
       state.loading = true
     },
     signInSuccess: (state, action: PayloadAction<any>) => {
-      console.log(">>>>", state, action, action.payload.email)
       state.loading = false
       state.success = true
       state.user.accessToken = action.payload.accessToken
@@ -43,10 +44,14 @@ const authSlice = createSlice({
     signInFailure: (state) => {
       state.loading = false
     },
+    logOut: (state) => {
+      state.user = initialUser
+    },
   },
 })
 
-export const { signInStart, signInSuccess, signInFailure } = authSlice.actions
+export const { signInStart, signInSuccess, signInFailure, logOut } =
+  authSlice.actions
 
 export const signIn =
   (email: string, password: string): any =>
@@ -67,17 +72,13 @@ export const signIn =
           uid: user.uid,
         })
       )
-      global?.window?.localStorage.setItem(
-        "userInfo",
-        JSON?.stringify({
-          token: user?.accessToken,
-          userId: user?.uid,
-        })
-      )
     } catch (error) {
       dispatch(signInFailure())
       console.error("Sign-in error:", error)
     }
   }
 
+export const logoutUser = (dispatch?: any) => {
+  dispatch(logOut())
+}
 export default authSlice.reducer

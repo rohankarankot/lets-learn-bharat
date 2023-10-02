@@ -19,18 +19,19 @@ import { signIn } from "@/components/redux/slice/authentication.slice"
 
 const Login = () => {
   const dispatch = useDispatch()
-  const {
-    auth: { user },
-  } = useSelector((state: any) => state)
-  console.log("user>>", user)
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   })
   const router = useRouter()
+  const {
+    auth: {
+      user: { accessToken },
+    },
+  } = useSelector((state: any) => state)
   useEffect(() => {
-    const user = global?.window?.localStorage.getItem("userInfo")
-    if (user != null) {
+    if (accessToken?.length > 0) {
       router.push("/")
     }
   }, [])
@@ -38,6 +39,9 @@ const Login = () => {
     e.preventDefault()
     // validation logic
     dispatch(signIn(formData?.email, formData?.password))
+    if (accessToken?.length > 0) {
+      router.push("/")
+    }
   }
   return (
     <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto">
