@@ -1,12 +1,12 @@
 "use client"
 
+import { logOut } from "@/redux/slice/authentication.slice"
 import { initFlowbite } from "flowbite"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { logOut, logoutUser } from "../redux/slice/authentication.slice"
 import { useDispatch } from "react-redux"
 
 const NavbarComponent = () => {

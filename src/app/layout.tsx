@@ -4,8 +4,8 @@ import { Inter } from "next/font/google"
 import NavbarComponent from "@/components/Navbar/Navbar.component"
 import Head from "next/head"
 import Script from "next/script"
-import CustomAlert from "@/components/utils/custom.alert"
-import { Providers } from "@/components/redux/provider"
+import { DefaultFooter } from "@/components/Footer/footer.component"
+import { Providers } from "@/redux/provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -34,6 +34,7 @@ export default function RootLayout({
           {/* <CustomAlert /> */}
 
           {children}
+          <DefaultFooter />
         </Providers>
       </body>
     </html>

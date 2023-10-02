@@ -1,19 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
+"use client"
 
-import { PrimaryBtn } from "@/components/CustomButton/Buttons";
-import Text from "@/components/CustomText/custom.component";
-import { SearchInput } from "@/components/Input/input.component";
-import { useState } from "react";
+import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
+import Text from "@/hoc/CustomText/custom.component"
+import { SearchInput } from "@/hoc/Input/input.component"
+import { useState } from "react"
 
 const Header = () => {
-  const [searchData, setSearchData] = useState("");
+  const [searchData, setSearchData] = useState("")
 
   const handleChange = (event: any) => {
-    const { value } = event.target; // You don't need to destructure event.target.value
-    setSearchData(value);
-  };
-  const handlePress = () => {};
+    const { value } = event.target // You don't need to destructure event.target.value
+    setSearchData(value)
+  }
+  const handlePress = () => {}
   return (
     <div className="flex-1 bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
       <div className="flex justify-center my-[37px]">
@@ -40,16 +40,12 @@ const Header = () => {
         />
       </div>
       <div className="flex justify-end w-[65%]">
-        <PrimaryBtn
-         
-          className={''}
-          onClick={handlePress}
-        >
+        <PrimaryBtn className={""} onClick={handlePress}>
           Visit Courses
         </PrimaryBtn>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

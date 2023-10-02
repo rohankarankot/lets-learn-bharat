@@ -1,4 +1,4 @@
-import { InputProps } from "../utils/declareType/type"; //here typescript declerataion in separate folder
+import { InputProps } from "@/utils/declareType/type"
 
 export const SearchInput = ({
   name,
@@ -20,11 +20,13 @@ export const SearchInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={"w-[90%] h-[100%] focus:outline-none placeholder-offWhite font-bold text-base pl-2"}
+        className={
+          "w-[90%] h-[100%] focus:outline-none placeholder-offWhite font-bold text-base pl-2"
+        }
       />
     </div>
-  );
-};
+  )
+}
 
 export const FormInput = ({
   type,
@@ -35,7 +37,7 @@ export const FormInput = ({
   prefix,
   ...rest
 }: InputProps) => {
-  console.log('rest', rest)
+  console.log("rest", rest)
   return (
     <input
       type={type}
@@ -46,5 +48,5 @@ export const FormInput = ({
       className={`w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:bg-transparent focus:ring-SurfieGreen focus:border-SurfieGreen text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out ${className}`}
       placeholder={placeholder}
     />
-  );
-};
+  )
+}

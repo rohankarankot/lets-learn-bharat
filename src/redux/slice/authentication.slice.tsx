@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { signInWithEmailAndPassword, UserCredential } from "firebase/auth"
-import { auth } from "../../../../config/firebase.config"
+import { auth } from "../../../config/firebase.config"
 
 interface userProps {
   accessToken: string

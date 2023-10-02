@@ -1,6 +1,6 @@
 "use client"
-import Text from "@/components/CustomText/custom.component"
-import { Size } from "@/components/utils/Size/screen.Size"
+import Text from "@/hoc/CustomText/custom.component"
+import { Size } from "@/utils/Size/screen.Size"
 import { useState } from "react"
 //this data for type of tab
 const data = [

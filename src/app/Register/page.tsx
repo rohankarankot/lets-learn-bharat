@@ -1,70 +1,64 @@
-"use client";
-import {
-  PrimaryBtn,
-  SecondaryBtn,
-  LinkBtn,
-} from "@/components/CustomButton/Buttons";
-import { FormInput } from "@/components/Input/input.component";
+"use client"
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "firebase/auth";
-import Link from "next/link";
+} from "firebase/auth"
+import Link from "next/link"
 
-import React, { useEffect, useState } from "react";
-import { auth } from "../../../config/firebase.config";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react"
+import { auth } from "../../../config/firebase.config"
+import { useRouter } from "next/navigation"
+import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
+import { FormInput } from "@/hoc/Input/input.component"
 
 const Signup = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    cPassword:""
-  });
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [passwordCheck, setPasswordCheck] = useState<boolean>(false);
+    cPassword: "",
+  })
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const [passwordCheck, setPasswordCheck] = useState<boolean>(false)
   const [disable, setDisable] = useState<boolean>(false)
 
   useEffect(() => {
-    if (
-      form?.password?.length > 0 &&
-      form?.cPassword?.length > 0
-    ) {
+    if (form?.password?.length > 0 && form?.cPassword?.length > 0) {
       if (form?.password === form?.cPassword) {
-        setPasswordCheck(false);
+        setPasswordCheck(false)
         setDisable(false)
       } else {
-        setPasswordCheck(true);
+        setPasswordCheck(true)
         setDisable(true)
       }
     }
-  }, [form?.password,form?.cPassword])
+  }, [form?.password, form?.cPassword])
 
   const handleRegister = (event: any) => {
-    if(passwordCheck){
+    if (passwordCheck) {
       setDisable(true)
     }
-    event.preventDefault();
-    setLoading(true);
+    event.preventDefault()
+    setLoading(true)
     createUserWithEmailAndPassword(auth, form?.email, form?.password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log('user', user)
-    })
-    .catch((error) => {
-      console.log('error', error)
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    })
-    .finally(() => setLoading(false));
-   router.push("/")
+      .then((userCredential) => {
+        const user = userCredential.user
+        console.log("user", user)
+      })
+      .catch((error) => {
+        console.log("error", error)
+        const errorCode = error.code
+        const errorMessage = error.message
+      })
+      .finally(() => setLoading(false))
+    router.push("/")
   }
 
   const handleChange = (event: any) => {
-    const { name, value } = event.target;
-    console.log('event?.target?.value', event.target)
-    setForm({...form,[name]: value});
+    const { name, value } = event.target
+    console.log("event?.target?.value", event.target)
+    setForm({ ...form, [name]: value })
   }
 
   return (
@@ -120,9 +114,11 @@ const Signup = () => {
                   value={form.cPassword}
                 />
               </div>
-              {passwordCheck && <p className="text-red-600">Your password and confirm password should match.</p>}
-
-
+              {passwordCheck && (
+                <p className="text-red-600">
+                  Your password and confirm password should match.
+                </p>
+              )}
 
               <div className="mb-6 flex items-center justify-between">
                 {/* <!--Forgot password link--> */}
@@ -153,7 +149,7 @@ const Signup = () => {
                 {/* <!-- Register link --> */}
                 <Link href="/login">
                   <p className="mb-0 mt-2 pt-1  font-semibold">
-                    Already Registered? 
+                    Already Registered?
                     <span className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700">
                       {" Login "}
                     </span>
@@ -165,7 +161,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Signup;
+export default Signup

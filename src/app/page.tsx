@@ -4,7 +4,7 @@ import { DefaultFooter } from "@/components/Footer/footer.component"
 import DataComponent from "@/components/HomePages/DataComponent/CardData.component"
 import Header from "@/components/HomePages/Header/header.component"
 import Tab from "@/components/HomePages/Tab/tab.home.component"
-import { store } from "@/components/redux/store"
+import { store } from "@/redux/store"
 import "flowbite"
 import { initFlowbite } from "flowbite"
 import { useEffect } from "react"
@@ -20,7 +20,6 @@ export default function Home() {
         <Header />
         <Tab />
         <DataComponent />
-        <DefaultFooter />
       </div>
     </Provider>
   )
