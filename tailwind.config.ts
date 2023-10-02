@@ -38,6 +38,7 @@ const config: Config = {
       '8': '8px',
     },
     screens: {
+      xs: "320px",
       sm: "480px",
       md: "768px",
       lg: "976px",
@@ -59,7 +60,8 @@ const config: Config = {
       pepermint: "#0A4A4A",
       ash:"#868686",
       offWhite:"#BFBFBF",
-      maroon:"#3C1C1C"
+      maroon:"#3C1C1C",
+      leaves:"#184B4B"
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],

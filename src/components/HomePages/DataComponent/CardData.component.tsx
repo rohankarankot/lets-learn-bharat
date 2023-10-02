@@ -17,7 +17,7 @@ const deviceSize=Size();
   console.log( cmsData?.cmsData);
 
   return (
-    <div className={`flex ${deviceSize.isMobile?'gap-4':'gap-20'} flex-wrap justify-center w-full `}>
+    <div className={`flex ${deviceSize.isMobile?'gap-4':'gap-20'} flex-wrap justify-center w-full pb-[30px]`}>
       {cmsData ? (
         cmsData.map((data: any) => (
           <CardWithLeftContent data={data} key={data.id} />

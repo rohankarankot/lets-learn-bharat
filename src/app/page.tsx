@@ -1,5 +1,6 @@
 "use client"
 
+import { DefaultFooter } from "@/components/Footer/footer.component"
 import DataComponent from "@/components/HomePages/DataComponent/CardData.component"
 import Header from "@/components/HomePages/Header/header.component"
 import Tab from "@/components/HomePages/Tab/tab.home.component"
@@ -19,6 +20,7 @@ export default function Home() {
         <Header />
         <Tab />
         <DataComponent />
+        <DefaultFooter />
       </div>
     </Provider>
   )
