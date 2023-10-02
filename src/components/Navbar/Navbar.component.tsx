@@ -1,7 +1,18 @@
+"use client"
+
+import { initFlowbite } from "flowbite"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect } from "react"
+
 
 const NavbarComponent = () => {
+  
+
+  useEffect(() => {
+    initFlowbite()
+    //dispatch(AllCmsData())
+  }, [])
   return (
     <nav className="w-full px-4  md:px-10 mx-auto bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

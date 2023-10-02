@@ -12,7 +12,7 @@ export const SearchInput = ({
 }: InputProps) => {
   return (
     <div
-      className={` flex h-[${height}] w-[${width}] items-center px-5 border-2 border-bermuda rounded-lg `}
+      className={` flex h-[${height}] w-[${width}]  items-center px-5 border-2 border-bermuda rounded-lg `}
     >
       {prefix && <div className="">{prefix}</div>}
       <input
@@ -20,7 +20,7 @@ export const SearchInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={"w-[90%] h-full focus:outline-none"}
+        className={"w-[90%] h-[100%s] focus:outline-none"}
       />
     </div>
   );

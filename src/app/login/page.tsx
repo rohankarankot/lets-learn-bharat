@@ -5,17 +5,62 @@ import {
   LinkBtn,
 } from "@/components/CustomButton/Buttons";
 import { FormInput } from "@/components/Input/input.component";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import Link from "next/link";
 
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { auth } from "../../../config/firebase.config";
+import { useRouter } from "next/navigation";
 const Login = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const user = global?.window?.localStorage.getItem("userInfo");
+    if (user != null) {
+      router.push("/");
+    }
+  }, []);
+
+  const handleRegister = (e: any) => {
+    e.preventDefault();
+    // createUserWithEmailAndPassword(auth, 'test@test.com', 'Password@sdf123')
+    // .then((userCredential) => {
+    //   // Signed up
+    //   const user = userCredential.user;
+    //   console.log('user', user)
+    //   // ...
+    // })
+    // .catch((error) => {
+    //   console.log('error', error)
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   // ..
+    // });
+    setLoading(true);
+    signInWithEmailAndPassword(auth, "test@test.com", "Password@sdf123")
+      .then((userCredential) => {
+        // Signed in
+        const res: any = userCredential.user;
+        global?.window?.localStorage.setItem(
+          "userInfo",
+          JSON?.stringify({
+            token: res?.accessToken,
+            userId: res?.uid,
+          })
+        );
+        router.push("/");
+      })
+      .catch((error) => {})
+      .finally(() => setLoading(false));
+  };
   return (
     <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto">
       {/* 
@@ -43,7 +88,9 @@ const Login = () => {
                 <FormInput
                   name="email"
                   type="text"
-                  onChange={(e:any) => {setForm({...form,email:e.target.email})}}
+                  onChange={(e: any) => {
+                    setForm({ ...form, email: e.target.email });
+                  }}
                   placeholder="Email Address or username"
                   value={form.email}
                 />
@@ -54,7 +101,9 @@ const Login = () => {
                 <FormInput
                   name="password"
                   type="text"
-                  onChange={(e:any) => {setForm({...form,password:e.target.password})}}
+                  onChange={(e: any) => {
+                    setForm({ ...form, password: e.target.password });
+                  }}
                   placeholder="password"
                   value={form.password}
                 />
@@ -68,8 +117,16 @@ const Login = () => {
               {/* <!-- Login button --> */}
               <div className="text-center lg:text-left">
                 <div>
-                  <PrimaryBtn className="text-white">Login</PrimaryBtn>
+                  <PrimaryBtn
+                    className="text-white"
+                    onClick={(e: any) => handleRegister(e)}
+                    loading={loading}
+                  >
+                    Login
+                  </PrimaryBtn>
+
                   <br />
+
                   <a
                     className="inline-flex  border-0 py-2 focus:outline-none  rounded cursor-pointer"
                     onClick={() => {}}

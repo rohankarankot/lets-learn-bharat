@@ -15,11 +15,6 @@ export default function Home() {
   // let Context = createContext();
 
 
-  useEffect(() => {
-    initFlowbite()
-    //dispatch(AllCmsData())
-  }, [])
-
   return (
     <Provider store={store}>
    <div className="bg-pink">

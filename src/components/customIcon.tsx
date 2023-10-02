@@ -4,5 +4,9 @@ export const AddIcon = ({sx}:any) => {
 )}
 export const AddedIcon = ({sx}:any) => {
     return(
-    <div><img src={"https://upload.wikimedia.org/wikipedia/commons/8/8b/Eo_circle_green_white_checkmark.svg"} alt="add_icon" width={35} height={35}/></div>
+    <div><img src={"https://upload.wikimedia.org/wikipedia/commons/8/8b/Eo_circle_green_white_checkmark.svg"} alt="add_icon" width={40} height={40}/></div>
+)}
+export const LoadingIcon = ({className}:any) => {
+    return(
+    <img src={"./loading.gif"} alt="add_icon" width={25} height={25} className={className}/>
 )}
