@@ -59,7 +59,8 @@ const config: Config = {
       pepermint: "#0A4A4A",
       ash:"#868686",
       offWhite:"#BFBFBF",
-      maroon:"#3C1C1C"
+      maroon:"#3C1C1C",
+      leaves:"#184B4B"
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
