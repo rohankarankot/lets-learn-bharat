@@ -6,19 +6,15 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { logoutUser } from "../redux/slice/authentication.slice"
+import { logOut, logoutUser } from "../redux/slice/authentication.slice"
 import { useDispatch } from "react-redux"
 
 const NavbarComponent = () => {
   const router = useRouter()
   const dispatch = useDispatch()
-  useEffect(() => {
-    initFlowbite()
-    //dispatch(AllCmsData())
-  }, [])
 
   const handleLogout = () => {
-    dispatch(logoutUser())
+    dispatch(logOut())
     router.push("/")
     router.refresh()
   }
@@ -29,7 +25,10 @@ const NavbarComponent = () => {
     },
   } = useSelector((state: any) => state)
   console.log("user>>", accessToken)
-
+  useEffect(() => {
+    initFlowbite()
+    //dispatch(AllCmsData())
+  }, [accessToken])
   return (
     <nav className="w-full px-4  md:px-10 mx-auto bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

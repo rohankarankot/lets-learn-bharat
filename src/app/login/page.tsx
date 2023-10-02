@@ -34,14 +34,11 @@ const Login = () => {
     if (accessToken?.length > 0) {
       router.push("/")
     }
-  }, [])
+  }, [accessToken])
   const handleSubmit = (e: any) => {
     e.preventDefault()
     // validation logic
     dispatch(signIn(formData?.email, formData?.password))
-    if (accessToken?.length > 0) {
-      router.push("/")
-    }
   }
   return (
     <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto">
