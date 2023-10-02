@@ -6,7 +6,7 @@ export const DefaultFooter = () => {
   return (
     <div className='footer-component'>
         <div className='bg-leaves w-full h-full'>
-            <div className='footer-links flex gap-[60px] p-[24px_0px_13px_77px]'>
+            <div className='footer-links flex gap-[60px] lg:p-[24px_0px_13px_77px] xs:p-[24px_30px_50px]'>
                 <div className='links flex flex-col gap-2'>
                     <h4 className='font-bold text-sm text-white'>About Us</h4>
                     <h4 className='font-bold text-sm text-white'>Contact Us</h4>
