@@ -1,0 +1,22 @@
+[
+    {
+        "name":"Student",
+        "total":1200,
+         "increses":"30%"
+    },
+    {
+        "name":"Teacher",
+        "total":120,
+         "increses":"70%"
+    },
+    {
+        "name":"Course",
+        "total":12,
+         "increses":"30%"
+    },
+    {
+        "name":"Amount Collection",
+        "total":1200,
+         "increses":"30%"
+    }
+]

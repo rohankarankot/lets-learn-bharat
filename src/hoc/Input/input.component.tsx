@@ -21,7 +21,7 @@ export const SearchInput = ({
         value={value}
         onChange={onChange}
         className={
-          "w-[90%] h-[100%] focus:outline-none placeholder-offWhite font-bold text-base pl-2"
+          "w-[90%] h-full focus:outline-none placeholder-offWhite font-bold text-base pl-2"
         }
       />
     </div>

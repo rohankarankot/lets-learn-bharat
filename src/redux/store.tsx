@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import CmsDataSlice from "./slice/cmsData.slice"
-import AuthSlice from "./slice/authentication.slice"
 import { persistReducer, persistStore } from "redux-persist"
 import localStorage from "redux-persist/es/storage"
+import AuthSlice from "./slice/authentication.slice"
+import CmsDataSlice from "./slice/cmsData.slice"
 
 const persistConfig = {
   key: "root",

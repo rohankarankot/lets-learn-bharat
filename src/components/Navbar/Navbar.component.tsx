@@ -2,12 +2,10 @@
 
 import { logOut } from "@/redux/slice/authentication.slice"
 import { initFlowbite } from "flowbite"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 const NavbarComponent = () => {
   const router = useRouter()
@@ -175,6 +173,15 @@ const NavbarComponent = () => {
                 </Link>
               </li>
             )}
+            <li>
+                <Link
+                  href="/admin"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-SurfieGreen md:p-0 dark:text-white md:dark:hover: dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  aria-current="page"
+                >
+                  Admin
+                </Link>
+              </li>
           </ul>
         </div>
       </div>

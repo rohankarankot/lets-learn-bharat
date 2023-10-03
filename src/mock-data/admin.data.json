@@ -1,0 +1,20 @@
+[
+    {
+        "name":"Dashboard"
+    },
+    {
+      "name":"Add Course"
+    },
+    {
+      "name":"Add User"
+    },
+    {
+        "name":"Course"
+    },
+    {
+        "name":"User"
+    },
+    {
+        "name":"Logout"
+    }
+]
