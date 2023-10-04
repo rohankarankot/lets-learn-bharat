@@ -2,13 +2,12 @@
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons";
 import { FormInput } from "@/hoc/Input/input.component";
 import DropdownList from "@/hoc/dropDown/drop.down";
-import { addDoc, collection } from "firebase/firestore";
 import { initFlowbite } from "flowbite";
 
 import { useRouter } from "next/navigation";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
-import { db } from "../../../config/firebase.config";
-
+// import { dataRef } from "../../../config/firebase.config";
+import { getDatabase, ref, set } from "firebase/database";
 const data = [
     {
         name: "offer",
@@ -17,6 +16,7 @@ const data = [
 ];
 const AddCourse = () => {
     const [addDataForm, setAddDataForm] = useState({
+        id:"",
         tag: "",
         image: "",
         title: "",
@@ -48,10 +48,12 @@ const AddCourse = () => {
         setAddDataForm({ ...addDataForm, [name]: value });
        
     };
+     
     const handleSubmit = async (e: any) => {
-        const docRef = await addDoc(collection(db, "posts"), addDataForm).then(
-            () => { }
-        );
+
+        const db = getDatabase();
+      set(ref(db, '/course/'+addDataForm.id ),addDataForm);
+
     };
     const handleFileUpload = () => {
         // Click the hidden file input to trigger the file selection dialog
@@ -71,14 +73,25 @@ const AddCourse = () => {
 
     return (
         <div className="flex flex-col items-center gap-4 mt-3 p-12">
+            <div className="flex justify-between w-full">
+           
             <FormInput
-                name="tag"
+                name="id"
+                type="text"
+                onChange={(e: any) => handleChange(e)}
+                placeholder="Enter Product Id"
+                value={addDataForm.id}
+                className="w-[30%] bg-silver"
+            />
+            <FormInput
+                name="Enter Tag Nam"
                 type="text"
                 onChange={(e: any) => handleChange(e)}
                 placeholder="Enter Tag"
                 value={addDataForm.tag}
-                className="w-[60%] bg-silver"
+                className="w-[30%] bg-silver"
             />
+            </div>
             {/* {validationErrors.tag && <div className="error">{validationErrors.tag}</div>} */}
             {/* */}
             <div className="h-[4.042253521126761vh] w-full border-2 border-grey-700 rounded-sm  flex items-center pl-3 bg-silver" onClick={handleFileUpload}>

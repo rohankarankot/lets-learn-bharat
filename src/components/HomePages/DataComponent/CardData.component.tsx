@@ -1,8 +1,9 @@
+import CardWithLeftContent from "@/components/card-with-left-content"
+import { fetchCmsData } from "@/redux/slice/cmsData.slice"
+import { Size } from "@/utils/Size/screen.Size"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import CardWithLeftContent from "@/components/card-with-left-content"
-import { Size } from "@/utils/Size/screen.Size"
-import { AllCmsData } from "@/redux/slice/cmsData.slice"
+
 
 const DataComponent = () => {
   const dispatch = useDispatch()
@@ -10,10 +11,10 @@ const DataComponent = () => {
   const deviceSize = Size()
   useEffect(() => {
     // Dispatch the fetchData action when the component mounts
-    dispatch(AllCmsData())
+    dispatch(fetchCmsData())
   }, [dispatch])
 
-  console.log(cmsData?.cmsData)
+  console.log("!!!!",cmsData)
 
   return (
     <div

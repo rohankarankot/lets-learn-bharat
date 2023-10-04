@@ -1,19 +1,25 @@
 "use client"
 
-import { DefaultFooter } from "@/components/Footer/footer.component"
 import DataComponent from "@/components/HomePages/DataComponent/CardData.component"
 import Header from "@/components/HomePages/Header/header.component"
 import Tab from "@/components/HomePages/Tab/tab.home.component"
 import { store } from "@/redux/store"
+import axios from 'axios'
 import "flowbite"
-import { initFlowbite } from "flowbite"
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { Provider } from "react-redux"
+import { Provider, useSelector } from "react-redux"
 // import { createContext } from "vm"
 export default function Home() {
+  useEffect(() =>{
+    apiData()
+  })
+  const apiData=async()=>{
+  const api=  await axios.get('http://localhost:3000/api');
+  console.log('api', api)
+  }
   // let Context = createContext();
-
+const data=useSelector((state:any)=>state.cmsData)
+console.log('data//...', data)
   return (
     <Provider store={store}>
       <div className="bg-pink">

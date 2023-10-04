@@ -29,7 +29,7 @@ const Pages = () => {
 
   return (
     <div className="flex ">
-      <ul className="flex flex-col justify-around text-sm font-medium bg-SurfieGreen text-gray-500 dark:text-gray-400 h-screen">
+      <ul className="flex flex-col justify-around text-sm font-medium bg-SurfieGreen text-gray-500 dark:text-gray-400 h-auto">
         <li className="mr-2">
           <a
             href="#"
