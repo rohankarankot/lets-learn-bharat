@@ -1,6 +1,6 @@
 import { CmsDataState } from "@/utils/declareType/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "./store"; // Import AppThunk if you have it defined
+
 
 const initialState: CmsDataState = {
   cmsData: [],
@@ -17,7 +17,7 @@ const CmsDataSlice = createSlice({
 });
 
 // Define an async action creator to fetch data
-export const fetchCmsData = (): AppThunk => async (dispatch:any) => {
+export const fetchCmsData = ():any=> async (dispatch:any) => {
   try {
     const response = await fetch(
       'https://learn-bharat-default-rtdb.firebaseio.com/courses.json'
