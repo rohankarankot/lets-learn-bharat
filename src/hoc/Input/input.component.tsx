@@ -9,6 +9,7 @@ export const SearchInput = ({
 
   height,
   width,
+  ...rest
 }: InputProps) => {
   return (
     <div
@@ -16,6 +17,7 @@ export const SearchInput = ({
     >
       {prefix && <div className="">{prefix}</div>}
       <input
+       {...rest}
         name={name}
         placeholder={placeholder}
         value={value}
