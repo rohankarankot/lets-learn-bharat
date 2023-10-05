@@ -7,6 +7,7 @@ import Script from "next/script"
 import { DefaultFooter } from "@/components/Footer/footer.component"
 import { Providers } from "@/redux/provider"
 import ProtectedRoute from "../../protected-routes"
+import { PageTransitionLoader } from "@/utils/page-transitioloader"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Providers>
           <NavbarComponent />
           <ProtectedRoute>
+            <PageTransitionLoader />
             {/* <CustomAlert /> */}
             {children}
           </ProtectedRoute>

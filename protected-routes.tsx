@@ -14,7 +14,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
       user: { accessToken },
     },
   } = useSelector((state: any) => state)
-  const ProtectedRoutes = useMemo(() => ["/dashboard", "/my-courses"], [])
+  const ProtectedRoutes = useMemo(() => ["/dashboard", "/my-couprses"], [])
 
   useEffect(() => {
     let currentPath = window.location.pathname
