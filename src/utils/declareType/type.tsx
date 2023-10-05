@@ -29,22 +29,18 @@ export type btnType = "primary" | "secondary" | "link"
 
 interface InputProps {
   name: string
-
   placeholder: string
-
   icon?: boolean
-
   onChange: any
-
   value: string
-
   prefix?: any
   height?: string
   width?: string
-
   type?: string
   className?: string
-  rest?:any
+  error?: boolean
+  helperText?: string
+  rest?: any
 }
 
 interface CustomTextProps {
@@ -59,7 +55,8 @@ interface ButtonProps {
   onClick?: Function
   type: btnType
 }
-interface CmsDataState{
-  cmsData:Array<Object>;
+interface CmsDataState {
+  cmsData: Array<Object>
 }
-export type { ButtonProps, CustomTextProps, InputProps,CmsDataState }
+
+export type { ButtonProps, CustomTextProps, InputProps, CmsDataState }

@@ -1,7 +1,24 @@
-import * as Yup from "yup"
+import * as Yup from 'yup';
 
-const Schema = Yup.object().shape({
-  tag: Yup.string().required("Tag is required"),
+export interface AddProductInterface {
+  tag: string;
+  image: string;
+  title: string;
+  time: string;
+  price: string;
+  offer: boolean;
+  offerPrice: string;
+  instituteName: string;
+  rating: string;
+  ratingCount: string;
+  primaryAction: string;
+  buttonType: string;
+  ctaLabel: string;
+  added: string;
+}
+
+export const AddProductSchema = Yup.object().shape({
+  tag: Yup.string().required('Tag is required'),
   image: Yup.string()
     .url("Image must be a valid URL")
     .required("Image is required"),
@@ -17,6 +34,4 @@ const Schema = Yup.object().shape({
   buttonType: Yup.string().required("Button type is required"),
   ctaLabel: Yup.string().required("CTA label is required"),
   added: Yup.string().required("Added date is required"),
-})
-
-export default Schema
+});
