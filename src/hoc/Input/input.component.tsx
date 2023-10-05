@@ -17,7 +17,7 @@ export const SearchInput = ({
     >
       {prefix && <div className="">{prefix}</div>}
       <input
-       {...rest}
+        {...rest}
         name={name}
         placeholder={placeholder}
         value={value}
@@ -39,7 +39,6 @@ export const FormInput = ({
   prefix,
   ...rest
 }: InputProps) => {
-  console.log("rest", rest)
   return (
     <input
       type={type}
