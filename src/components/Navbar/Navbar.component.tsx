@@ -127,14 +127,12 @@ const NavbarComponent = () => {
                     className="py-2 text-sm text-gray-700 dark:text-gray-400"
                     aria-labelledby="dropdownLargeButton"
                   >
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Dashboard
-                      </a>
-                    </li>
+                    <Link
+                      href="/dashboard"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Dashboard
+                    </Link>
                     <li>
                       <a
                         href="#"
@@ -174,14 +172,14 @@ const NavbarComponent = () => {
               </li>
             )}
             <li>
-                <Link
-                  href="/admin"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-SurfieGreen md:p-0 dark:text-white md:dark:hover: dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  aria-current="page"
-                >
-                  Admin
-                </Link>
-              </li>
+              <Link
+                href="/admin"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-SurfieGreen md:p-0 dark:text-white md:dark:hover: dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                aria-current="page"
+              >
+                Admin
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
