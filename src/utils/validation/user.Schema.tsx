@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const schema = Yup.object().shape({
+const Schema = Yup.object().shape({
   tag: Yup.string().required('Tag is required'),
   image: Yup.string().url('Image must be a valid URL').required('Image is required'),
   title: Yup.string().required('Title is required'),
@@ -17,4 +17,4 @@ const schema = Yup.object().shape({
   added: Yup.string().required('Added date is required'),
 });
 
-export default schema;
+export default Schema;

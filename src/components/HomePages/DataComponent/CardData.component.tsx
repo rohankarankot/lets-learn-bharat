@@ -1,18 +1,16 @@
 import CardWithLeftContent from "@/components/card-with-left-content"
-import { fetchCmsData } from "@/redux/slice/cmsData.slice"
 import { Size } from "@/utils/Size/screen.Size"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
-
+import cmsData from '../../../mock-data/card.json'
 const DataComponent = () => {
   const dispatch = useDispatch()
-  const cmsData = useSelector((state: any) => state.cmsData.cmsData)
+  // const cmsData = useSelector((state: any) => state.cmsData.cmsData)
   const deviceSize = Size()
-  useEffect(() => {
-    // Dispatch the fetchData action when the component mounts
-    dispatch(fetchCmsData())
-  }, [dispatch])
+  // useEffect(() => {
+  //   // Dispatch the fetchData action when the component mounts
+  //   dispatch(fetchCmsData())
+  // }, [dispatch])
 
   console.log("!!!!",cmsData)
 
