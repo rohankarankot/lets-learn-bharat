@@ -11,7 +11,7 @@ import { getFirestore } from 'firebase/firestore';
 export const firebaseConfig = {
   apiKey: "AIzaSyDNUBDrsYlo_8qB0S-mfZKkLKlHgH20AB8",
   authDomain: "learn-bharat.firebaseapp.com",
-  databaseURL: "https://learn-bharat-default-rtdb.firebaseio.com/", 
+  databaseURL: 'https://learn-bharat-default-rtdb.firebaseio.com',
   projectId: "learn-bharat",
   storageBucket: "learn-bharat.appspot.com",
   messagingSenderId: "722021714176",

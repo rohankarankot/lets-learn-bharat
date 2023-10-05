@@ -1,6 +1,6 @@
 import { CmsDataState } from "@/utils/declareType/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import { get, getDatabase, ref } from "firebase/database";
 
 const initialState: CmsDataState = {
   cmsData: [],
@@ -17,31 +17,25 @@ const CmsDataSlice = createSlice({
 });
 
 // Define an async action creator to fetch data
-export const fetchCmsData = ():any=> async (dispatch:any) => {
+export const fetchCmsData = ():any => async (dispatch: any) => {
+  console.log("bm,m,");
   try {
-    const response = await fetch(
-      'https://learn-bharat-default-rtdb.firebaseio.com/courses.json'
-    );
+    // Reference to the data location in the Realtime Database
+    const db = getDatabase();
+    const cmsRef = ref(db, "/courses"); // Replace 'course' with your database path
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch data');
-    }
-
-    const courseData = await response.json();
-
-    if (courseData) {
-      // Convert the data to an array if necessary (optional)
-      const dataArray = Object.values(courseData);
-
-      // Dispatch the action with the fetched data
-      dispatch(CmsDataSlice.actions.setAllCmsData(dataArray));
+    // Use the `get` function to fetch data from the database
+    const snapshot = await get(cmsRef);
+    console.log("snapshot", snapshot);
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      console.log("data///", data);
+      dispatch(setAllCmsData(data));
     } else {
-      // Handle the case when data is empty
-      dispatch(CmsDataSlice.actions.setAllCmsData([]));
+      console.log("No data available");
     }
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    // Handle the error, e.g., show a message to the user
+  } catch (e) {
+    console.error("Error:", e);
   }
 };
 

@@ -48,7 +48,7 @@ const AddCourse = () => {
     const handleSubmit = async (e: any) => {
 
         const db = getDatabase();
-      set(ref(db, '/course/'+addDataForm.id ),addDataForm);
+      set(ref(db, '/courses/'+addDataForm.id ),addDataForm);
 
     };
     const handleFileUpload = () => {
