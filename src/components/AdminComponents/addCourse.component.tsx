@@ -62,7 +62,7 @@ const AddCourse = () => {
 
     const handleFileChange = (e: any) => {
         const file = e.target.files[0];
-        const imageUrl = URL.createObjectURL(file);
+        const imageUrl = URL?.createObjectURL(file);
 
         if (file) {
             // Handle the uploaded file here (e.g., upload to a server or save it)
@@ -95,7 +95,7 @@ const AddCourse = () => {
             {/* {validationErrors.tag && <div className="error">{validationErrors.tag}</div>} */}
             {/* */}
             <div className="h-[4.042253521126761vh] w-full border-2 border-grey-700 rounded-sm  flex items-center pl-3 bg-silver" onClick={handleFileUpload}>
-                <button >Upload File</button>
+              <button > { addDataForm.image==''?"Upload File" :"Already Uploaded"} </button>
                 <input
                     ref={fileInputRef}
                     type="file"

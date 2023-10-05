@@ -4,7 +4,7 @@ import StudentList from "./StudentList.dashboard"
 const Dashboard = () => {
   return (
     <div>
-    <div className="flex    h-[300px]  justify-around">
+    <div className="flex    lg:h-[300px]  justify-around h-auto">
     <div className="px-[12px] py-[12px] flex flex-wrap  gap-6  ">
       {
         data?.map((mappedData,index) => <Card className={'py-[20px] '} key={index}>

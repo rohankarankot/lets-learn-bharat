@@ -16,7 +16,7 @@ const Header = () => {
   const handlePress = () => {}
   return (
     <div className="flex-1 bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
-      <div className="flex justify-center my-[37px]">
+      <div className="flex justify-center my-[37px] w-full ">
         <SearchInput //  use Custom input
           placeholder="Search for courses"
           name="search"

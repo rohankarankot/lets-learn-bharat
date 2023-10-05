@@ -4,7 +4,6 @@ import DataComponent from "@/components/HomePages/DataComponent/CardData.compone
 import Header from "@/components/HomePages/Header/header.component"
 import Tab from "@/components/HomePages/Tab/tab.home.component"
 import { store } from "@/redux/store"
-import axios from 'axios'
 import "flowbite"
 import { useEffect } from "react"
 import { Provider, useSelector } from "react-redux"
@@ -14,8 +13,7 @@ export default function Home() {
     apiData()
   })
   const apiData=async()=>{
-  const api=  await axios.get('http://localhost:3000/api');
-  console.log('api', api)
+
   }
   // let Context = createContext();
 const data=useSelector((state:any)=>state.cmsData)
