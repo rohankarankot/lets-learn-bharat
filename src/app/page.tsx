@@ -6,18 +6,18 @@ import Tab from "@/components/HomePages/Tab/tab.home.component"
 import { store } from "@/redux/store"
 import "flowbite"
 import { useEffect } from "react"
-import { Provider, useSelector } from "react-redux"
+import { Provider } from "react-redux"
 // import { createContext } from "vm"
 export default function Home() {
   useEffect(() =>{
     apiData()
   })
-  const apiData=async()=>{
+  const apiData=()=>{
 
   }
   // let Context = createContext();
-const data=useSelector((state:any)=>state.cmsData)
-console.log('data//...', data)
+// const data=useSelector((state:any)=>state.cmsData)
+// console.log('data//...', data)
   return (
     <Provider store={store}>
       <div className="bg-pink">
