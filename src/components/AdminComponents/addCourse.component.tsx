@@ -2,12 +2,9 @@
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons";
 import { FormInput } from "@/hoc/Input/input.component";
 import DropdownList from "@/hoc/dropDown/drop.down";
-import { initFlowbite } from "flowbite";
-
-import { useRouter } from "next/navigation";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
-// import { dataRef } from "../../../config/firebase.config";
 import { getDatabase, ref, set } from "firebase/database";
+import { initFlowbite } from "flowbite";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 const data = [
     {
         name: "offer",
@@ -40,7 +37,6 @@ const AddCourse = () => {
         initFlowbite();
 
     }, []);
-    const route = useRouter();
     const handleChange = (e: any) => {
         const { name, value } = e.target;
       

@@ -1,18 +1,12 @@
 "use client"
-
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth"
 import Link from "next/link"
 
-import React, { useEffect, useState } from "react"
-import { auth } from "../../../config/firebase.config"
-import { useRouter } from "next/navigation"
-import { useDispatch, useSelector } from "react-redux"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import { FormInput } from "@/hoc/Input/input.component"
 import { signIn } from "@/redux/slice/authentication.slice"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 const Login = () => {
   const dispatch = useDispatch()
