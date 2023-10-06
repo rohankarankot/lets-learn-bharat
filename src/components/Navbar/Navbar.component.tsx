@@ -19,14 +19,16 @@ const NavbarComponent = () => {
 
   const {
     auth: {
-      user: { accessToken },
+      user: { accessToken,type },
+      
     },
   } = useSelector((state: any) => state)
-  console.log("user>>", accessToken)
+  console.log("user>>", type)
   useEffect(() => {
     initFlowbite()
     //dispatch(AllCmsData())
   }, [accessToken])
+
   return (
     <nav className="w-full px-4  md:px-10 mx-auto bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -172,13 +174,14 @@ const NavbarComponent = () => {
               </li>
             )}
             <li>
-              <Link
+             { <Link
                 href="/admin"
                 className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-SurfieGreen md:p-0 dark:text-white md:dark:hover: dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 aria-current="page"
               >
                 Admin
               </Link>
+           } 
             </li>
           </ul>
         </div>

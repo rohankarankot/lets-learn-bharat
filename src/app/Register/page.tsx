@@ -1,16 +1,14 @@
 "use client"
 
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth"
+import { createUserWithEmailAndPassword } from "firebase/auth"
 import Link from "next/link"
 
-import React, { useEffect, useState } from "react"
-import { auth } from "../../../config/firebase.config"
-import { useRouter } from "next/navigation"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import { FormInput } from "@/hoc/Input/input.component"
+import { addDoc, collection } from "firebase/firestore"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { auth, db } from "../../../config/firebase.config"
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -42,9 +40,11 @@ const Signup = () => {
     event.preventDefault()
     setLoading(true)
     createUserWithEmailAndPassword(auth, form?.email, form?.password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        console.log("user", user)
+      .then(async (userCredential) => {
+        await addDoc(collection(db, "user"), {
+          admin: true,
+          uid: userCredential.user.uid,
+        })
       })
       .catch((error) => {
         console.log("error", error)
@@ -63,9 +63,6 @@ const Signup = () => {
 
   return (
     <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto">
-      {/* 
-        <SecondaryBtn className="text-white">second</SecondaryBtn>
-        <LinkBtn className="text-white">link</LinkBtn> */}
       <div className="h-full">
         <h1 className="text-3xl text-center text-SurfieGreen font-semibold">
           Register Yourself

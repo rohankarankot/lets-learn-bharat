@@ -17,14 +17,13 @@ const Login = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault()
     // validation logic
-  
   }
   return (
     <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto h-screen">
       {/* 
         <SecondaryBtn className="text-white">second</SecondaryBtn>
         <LinkBtn className="text-white">link</LinkBtn> */}
-      <div className="h-screen">
+      <div className="h-screen ">
         <h1 className="text-3xl text-center text-SurfieGreen font-semibold">
           Welcome back!
         </h1>

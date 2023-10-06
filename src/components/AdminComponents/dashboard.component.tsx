@@ -1,7 +1,25 @@
+'use client'
 import Card from "@/hoc/Card/custum.card"
+import ChartField from "@/hoc/chart/custum.chart"
+import { useEffect, useState } from "react"
 import data from '../../mock-data/dashboard.data.json'
 import StudentList from "./StudentList.dashboard"
 const Dashboard = () => {
+  const [time, setTime] = useState<Array<string>>(() => {
+    const storedTime = window.localStorage.getItem('h');
+    return storedTime ? JSON.parse(storedTime) : [];
+  });
+
+  useEffect(() => {
+    const currentDate = new Date();
+
+    if (currentDate.getMinutes() === 0) {
+      const hours = currentDate.getHours();
+      window.localStorage.setItem("h", JSON.stringify([...time, hours]));
+      setTime((prevTime:any) => [...prevTime, hours]);
+    }
+  }, [new Date().getHours()]);
+
   return (
     <div>
     <div className="flex    lg:h-[300px]  justify-around h-auto">
@@ -20,8 +38,8 @@ const Dashboard = () => {
       }
 
     </div>
-    <div className=" bg-SurfieGreen w-[100%] ">
-
+    <div className=" w-[100%] ">
+     <ChartField data={[12, 19, 3, 5, 2, 3]} labels={time}/>
     </div>
     
     </div>

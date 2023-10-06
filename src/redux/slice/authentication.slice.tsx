@@ -7,23 +7,27 @@ interface userProps {
   displayName: string
   email: string
   uid: string
+  type: string
 }
 interface AuthState {
   user: userProps
   loading: boolean
   success: boolean
+  type: string
 }
 const initialUser: userProps = {
   accessToken: "",
   displayName: "",
   email: "",
   uid: "",
+  type: "",
 }
 
 const initialState: AuthState = {
   user: initialUser,
   loading: false,
   success: false,
+  type: "",
 }
 
 const authSlice = createSlice({
@@ -40,6 +44,7 @@ const authSlice = createSlice({
       state.user.displayName = action.payload.displayName
       state.user.email = action.payload.email
       state.user.uid = action.payload.uid
+      state.user.type = action.payload.type
     },
     signInFailure: (state) => {
       state.loading = false
@@ -49,9 +54,6 @@ const authSlice = createSlice({
     },
   },
 })
-
-export const { signInStart, signInSuccess, signInFailure, logOut } =
-  authSlice.actions
 
 export const signIn =
   (email: string, password: string): any =>
@@ -64,12 +66,14 @@ export const signIn =
         password
       )
       const user: any = userCredential.user
+
       dispatch(
         signInSuccess({
           accessToken: user.accessToken,
           displayName: user.displayName,
           email: user.email,
           uid: user.uid,
+          //  admin:admin?.admin
         })
       )
     } catch (error) {
@@ -81,4 +85,6 @@ export const signIn =
 export const logoutUser = (dispatch?: any) => {
   dispatch(logOut())
 }
+export const { signInStart, signInSuccess, signInFailure, logOut } =
+  authSlice.actions
 export default authSlice.reducer

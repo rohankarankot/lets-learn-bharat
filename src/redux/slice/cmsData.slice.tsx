@@ -11,7 +11,8 @@ const CmsDataSlice = createSlice({
   initialState,
   reducers: {
     setAllCmsData(state, action: PayloadAction<any[]>) {
-      state.cmsData = action.payload
+      const data = action.payload;
+      state.cmsData= Object.values(data);
     },
   },
 })

@@ -17,6 +17,7 @@
     "@types/react-dom": "18.2.7",
     "@types/react-redux": "^7.1.27",
     "axios": "^1.5.1",
+    "chartjs-react": "^4.1.0",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.3",
     "firebase": "^10.4.0",
