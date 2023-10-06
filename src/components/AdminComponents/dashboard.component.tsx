@@ -20,7 +20,6 @@ const Dashboard = () => {
     }
   }, [new Date().getHours()]);
 
-    
   return (
     <div>
     <div className="flex    lg:h-[300px]  justify-around h-auto">
