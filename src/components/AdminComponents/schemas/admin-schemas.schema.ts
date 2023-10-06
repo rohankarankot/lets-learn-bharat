@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 export interface AddProductInterface {
-  tag: string;
   image: string;
   title: string;
   time: string;
@@ -11,16 +10,10 @@ export interface AddProductInterface {
   instituteName: string;
   rating: string;
   ratingCount: string;
-  primaryAction: string;
-  buttonType: string;
-  ctaLabel: string;
-  added: string;
 }
 
 export const AddProductSchema = Yup.object().shape({
-  tag: Yup.string().required('Tag is required'),
   image: Yup.string()
-    .url("Image must be a valid URL")
     .required("Image is required"),
   title: Yup.string().required("Title is required"),
   time: Yup.string().required("Time is required"),
@@ -30,8 +23,4 @@ export const AddProductSchema = Yup.object().shape({
   instituteName: Yup.string().required("Institute name is required"),
   rating: Yup.string().required("Rating is required"),
   ratingCount: Yup.string().required("Rating count is required"),
-  primaryAction: Yup.string().required("Primary action is required"),
-  buttonType: Yup.string().required("Button type is required"),
-  ctaLabel: Yup.string().required("CTA label is required"),
-  added: Yup.string().required("Added date is required"),
 });

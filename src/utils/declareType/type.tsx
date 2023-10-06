@@ -1,3 +1,5 @@
+import { MutableRefObject } from "react"
+
 type RGB = `rgb(${string})`
 
 type RGBA = `rgba(${string})`
@@ -41,6 +43,8 @@ interface InputProps {
   error?: boolean
   helperText?: string
   rest?: any
+  ref?:MutableRefObject<any>
+  isDisabled?:boolean
 }
 
 interface CustomTextProps {
@@ -59,4 +63,5 @@ interface CmsDataState {
   cmsData: Array<Object>
 }
 
-export type { ButtonProps, CustomTextProps, InputProps, CmsDataState }
+export type { ButtonProps, CmsDataState, CustomTextProps, InputProps }
+
