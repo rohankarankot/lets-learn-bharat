@@ -1,8 +1,6 @@
 "use client"
 
-import {
-  createUserWithEmailAndPassword
-} from "firebase/auth"
+import { createUserWithEmailAndPassword } from "firebase/auth"
 import Link from "next/link"
 
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
@@ -43,19 +41,9 @@ const Signup = () => {
     setLoading(true)
     createUserWithEmailAndPassword(auth, form?.email, form?.password)
       .then(async (userCredential) => {
-      
-        // const docRef = db.collection('users').doc('alovelace');
-
-        // await docRef.set({
-        //   first: 'Ada',
-        //   last: 'Lovelace',
-        //   born: 1815
-        // });
-        console.log('userCredential.p', userCredential)
-        const docRef= await addDoc(collection(db,'user'),{
-          
-          admin:true,
-          uid:userCredential.user.uid
+        await addDoc(collection(db, "user"), {
+          admin: true,
+          uid: userCredential.user.uid,
         })
       })
       .catch((error) => {
@@ -75,9 +63,6 @@ const Signup = () => {
 
   return (
     <div className="w-full max-w-[1280px] px-10 py-6 md:px-10 mx-auto">
-      {/* 
-        <SecondaryBtn className="text-white">second</SecondaryBtn>
-        <LinkBtn className="text-white">link</LinkBtn> */}
       <div className="h-full">
         <h1 className="text-3xl text-center text-SurfieGreen font-semibold">
           Register Yourself

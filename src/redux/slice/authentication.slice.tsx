@@ -1,34 +1,33 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { signInWithEmailAndPassword, UserCredential } from "firebase/auth";
-import { auth } from "../../../config/firebase.config";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { signInWithEmailAndPassword, UserCredential } from "firebase/auth"
+import { auth } from "../../../config/firebase.config"
 
 interface userProps {
   accessToken: string
   displayName: string
   email: string
   uid: string
-  type:string
+  type: string
 }
 interface AuthState {
   user: userProps
   loading: boolean
   success: boolean
-  type :string
+  type: string
 }
 const initialUser: userProps = {
   accessToken: "",
   displayName: "",
   email: "",
   uid: "",
-  type:""
-
+  type: "",
 }
 
 const initialState: AuthState = {
   user: initialUser,
   loading: false,
   success: false,
-  type:""
+  type: "",
 }
 
 const authSlice = createSlice({
@@ -45,7 +44,7 @@ const authSlice = createSlice({
       state.user.displayName = action.payload.displayName
       state.user.email = action.payload.email
       state.user.uid = action.payload.uid
-      state.user.type=action.payload.type
+      state.user.type = action.payload.type
     },
     signInFailure: (state) => {
       state.loading = false
@@ -55,8 +54,6 @@ const authSlice = createSlice({
     },
   },
 })
-
-
 
 export const signIn =
   (email: string, password: string): any =>
@@ -69,10 +66,7 @@ export const signIn =
         password
       )
       const user: any = userCredential.user
-      //const admin=getDoc(db)
-        // const admin=getDoc(doc(db,'user','wlWPvuI1XtwsGe2LbydL'))
-        // console.log("-------",admin);
-        
+
       dispatch(
         signInSuccess({
           accessToken: user.accessToken,
