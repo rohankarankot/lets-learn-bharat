@@ -1,16 +1,16 @@
 "use client"
 
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
 } from "firebase/auth"
 import Link from "next/link"
 
-import React, { useEffect, useState } from "react"
-import { auth } from "../../../config/firebase.config"
-import { useRouter } from "next/navigation"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import { FormInput } from "@/hoc/Input/input.component"
+import { addDoc, collection } from "firebase/firestore"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { auth, db } from "../../../config/firebase.config"
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -42,9 +42,21 @@ const Signup = () => {
     event.preventDefault()
     setLoading(true)
     createUserWithEmailAndPassword(auth, form?.email, form?.password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        console.log("user", user)
+      .then(async (userCredential) => {
+      
+        // const docRef = db.collection('users').doc('alovelace');
+
+        // await docRef.set({
+        //   first: 'Ada',
+        //   last: 'Lovelace',
+        //   born: 1815
+        // });
+        console.log('userCredential.p', userCredential)
+        const docRef= await addDoc(collection(db,'user'),{
+          
+          admin:true,
+          uid:userCredential.user.uid
+        })
       })
       .catch((error) => {
         console.log("error", error)
