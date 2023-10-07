@@ -1,0 +1,44 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "placeholder": "Enter title",
+    "ref": false
+  },
+  {
+    "name": "image",
+    "ref": true,
+    "type": "file",
+    "placeholder": ""
+  },
+  {
+    "name": "time",
+    "type": "text",
+    "placeholder": "Enter Time",
+    "ref": false
+  },
+  {
+    "name": "price",
+    "type": "text",
+    "placeholder": "",
+    "ref": false
+  },
+  {
+    "name": "instituteName",
+    "type": "text",
+    "placeholder": "Enter institute Name",
+    "ref": false
+  },
+  {
+    "name": "rating",
+    "type": "text",
+    "placeholder": "Enter Product overal rating",
+    "ref": false
+  },
+  {
+    "name": "ratingCount",
+    "type": "text",
+    "placeholder": "Enter Rating Count",
+    "ref": false
+  }
+]
