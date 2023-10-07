@@ -61,7 +61,8 @@ const config: Config = {
       ash:"#868686",
       offWhite:"#BFBFBF",
       maroon:"#3C1C1C",
-      leaves:"#184B4B"
+      leaves:"#184B4B",
+      smoke:"#F8F5F5"
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],

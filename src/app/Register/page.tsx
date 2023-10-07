@@ -12,6 +12,7 @@ import { auth, db } from "../../../config/firebase.config"
 
 const Signup = () => {
   const [form, setForm] = useState({
+    name:"",
     email: "",
     password: "",
     cPassword: "",
@@ -78,9 +79,18 @@ const Signup = () => {
           </div>
 
           {/* <!-- Right column container --> */}
-          <div className="mb-12 md:mb-0  lg:w-5/12 xl:w-5/12">
+          <div className="mb-12 mt-10 md:mb-0  lg:w-5/12 xl:w-5/12">
             <form>
               {/* <!-- identifier input --> */}
+              <div className="relative mb-6" data-te-input-wrapper-init>
+                <FormInput
+                  name="name"
+                  type="text"
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                  value={form.name}
+                />
+              </div>
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <FormInput
                   name="email"
