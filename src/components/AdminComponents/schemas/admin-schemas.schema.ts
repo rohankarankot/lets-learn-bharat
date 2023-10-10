@@ -10,6 +10,7 @@ export interface AddProductInterface {
   instituteName: string;
   rating: string;
   ratingCount: string;
+  id:any;
 }
 
 export const AddProductSchema = Yup.object().shape({

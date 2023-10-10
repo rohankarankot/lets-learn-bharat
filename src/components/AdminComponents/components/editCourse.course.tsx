@@ -1,61 +1,37 @@
-"use client"
-import Alert from "@/hoc/Alert/custum.alert"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
+import { getDatabase, ref, update } from "firebase/database"
+import { useState } from "react"
+import { useSelector } from "react-redux"
+import inputData from "../../../mock-data/userInput.json"
+import { AddProductInterface, AddProductSchema } from "../schemas/admin-schemas.schema"
+
 import { FormInput } from "@/hoc/Input/input.component"
 import DropdownList from "@/hoc/dropDown/drop.down"
-import { getDatabase } from "firebase/database"
-import { initFlowbite } from "flowbite"
-import { MutableRefObject, useEffect, useRef, useState } from "react"
-import * as Yup from "yup"
-import {
-  AddProductInterface,
-  AddProductSchema,
-} from "./schemas/admin-schemas.schema"
-import inputData from "../../mock-data/userInput.json"
 import ImageUploader from "react-image-upload"
-
-const data = [
-  {
-    name: "offer",
-    type: [true, false],
-  },
-]
-const initialValues = {
-  image: "",
-  title: "",
-  time: "",
-  price: "",
-  offer: false,
-  offerPrice: "",
-  instituteName: "",
-  rating: "",
-  ratingCount: "",
-}
-const AddCourse = () => {
+import * as Yup from "yup"
+const EditCourse = ({initialValues,id}:any) => {
+ 
+  
   const [addDataForm, setAddDataForm] =
-    useState<AddProductInterface>(initialValues)
-
+  useState<AddProductInterface>(initialValues)
   const [validationErrors, setValidationErrors] = useState<any>({})
   const [addSuccess, setAddSuccess] = useState(false)
-  const fileInputRef: MutableRefObject<any> = useRef(null)
   const [hidden, setHidden] = useState(true)
-  useEffect(() => {
-    initFlowbite()
-  }, [])
+  const data = useSelector((state: any) => state.cmsData.cmsData)
   const handleChange = (e: any) => {
-    const { name, value } = e.target
-
-    setAddDataForm({ ...addDataForm, [name]: value })
+    const {name,value}=e.target
+    setAddDataForm({...addDataForm,[name]:value})
   }
-  console.log("addDataForm.image", addDataForm.image)
-  console.log("validationErrors", validationErrors)
-  const handleSubmit = async (e: React.FormEvent) => {
+  const getImageFileObject = (file:any) => {}
+  const handleFileChange = () => {}
+  console.log("initialValues2", initialValues)
+  const handleSubmit=async(e:any)=>{
     e.preventDefault()
-    const id = Math.floor(Math.random() * 500)
+    
     try {
       await AddProductSchema.validate(addDataForm, { abortEarly: false })
       const db = getDatabase()
-      // set(ref(db, '/courses/'+id ),addDataForm);
+      update(ref(db, '/courses/'+id ),addDataForm);
       setAddSuccess(true)
       setAddDataForm(initialValues)
       setHidden(false)
@@ -75,29 +51,16 @@ const AddCourse = () => {
       }
     }
   }
-  console.log("====", addDataForm)
-  const handleFileUpload = () => {
-    // Click the hidden file input to trigger the file selection dialog
-    fileInputRef.current.click()
-  }
-
-  const getImageFileObject = (file: any) => {
-    console.log("file", file)
-  }
-
   return (
     <>
-      {addSuccess && (
-        <div className="py-5 px-3">
-          <Alert isHidden={hidden}>Success</Alert>
-        </div>
-      )}
-      <form className="flex flex-col items-center gap-4 mt-3 p-7  overflow-y-scroll scroll-auto h-screen">
+ 
+        
+        <form className="flex flex-col items-center gap-4 mt-3 p-7  h-screen">
         {inputData?.map((allInputData, index) => {
           const name: any = allInputData.name
           return allInputData.name === "image" ? (
             <ImageUploader
-              onFileAdded={(img) => getImageFileObject(img)}
+              onFileAdded={(img:any) => getImageFileObject(img)}
               // onFileRemoved={(img) => runAfterImageDelete(img)}
             />
           ) : index != 4 ? (
@@ -141,8 +104,9 @@ const AddCourse = () => {
           Add To Database
         </PrimaryBtn>
       </form>
-    </>
+      
+      </>
   )
 }
 
-export default AddCourse
+export default EditCourse

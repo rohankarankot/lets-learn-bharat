@@ -1,8 +1,8 @@
 "use client"
-import Course from "@/components/AdminComponents/ShowCourse"
-import User from "@/components/AdminComponents/User"
-import AddCourse from "@/components/AdminComponents/addCourse.component"
-import Dashboard from "@/components/AdminComponents/dashboard.component"
+import User from "@/components/AdminComponents/User.admin"
+import AddCourse from "@/components/AdminComponents/addCourse.admin"
+import Course from "@/components/AdminComponents/course.admin"
+import Dashboard from "@/components/AdminComponents/dashboard.admin"
 import { initFlowbite } from "flowbite"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -25,7 +25,7 @@ const Pages = () => {
 
   return (
     <div className="flex w-full ">
-      <ul className="flex text-2xl flex-col justify-around font-medium bg-SurfieGreen text-gray-500 dark:text-gray-400 h-[100vh] w-[30%] items-center">
+      <ul className="flex text-xs sm:text-2xl flex-col justify-around font-medium bg-SurfieGreen text-gray-500 dark:text-gray-400 h-[100vh] w-[30%] items-center">
         <li className="mr-2">
           <a
             className={`inline-block px-4 py-3 ${

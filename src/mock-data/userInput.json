@@ -5,12 +5,7 @@
     "placeholder": "Enter title",
     "ref": false
   },
-  {
-    "name": "image",
-    "ref": true,
-    "type": "file",
-    "placeholder": ""
-  },
+ 
   {
     "name": "time",
     "type": "text",
@@ -30,6 +25,9 @@
     "ref": false
   },
   {
+
+  },
+  {
     "name": "rating",
     "type": "text",
     "placeholder": "Enter Product overal rating",
@@ -40,5 +38,11 @@
     "type": "text",
     "placeholder": "Enter Rating Count",
     "ref": false
+  },
+  {
+    "name": "image",
+    "ref": true,
+    "type": "file",
+    "placeholder": ""
   }
 ]
