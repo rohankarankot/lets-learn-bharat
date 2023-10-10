@@ -5,11 +5,11 @@ import Link from "next/link"
 
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import { FormInput } from "@/hoc/Input/input.component"
-import { addDoc, collection } from "firebase/firestore"
+import 'firebase/firestore'
+import { doc, setDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { auth, db } from "../../../config/firebase.config"
-
+import { auth, db, } from "../../../config/firebase.config"
 const Signup = () => {
   const [form, setForm] = useState({
     email: "",
@@ -41,10 +41,14 @@ const Signup = () => {
     setLoading(true)
     createUserWithEmailAndPassword(auth, form?.email, form?.password)
       .then(async (userCredential) => {
-        await addDoc(collection(db, "user"), {
-          admin: true,
-          uid: userCredential.user.uid,
-        })
+        console.log('userCredential',userCredential )
+      let  tempDart={
+              
+        }
+        await setDoc(doc(db, 'userAccount', ), {
+          userAccount: tempDart,
+        }).catch((e)=>console.log('first', e),)
+        // navigation.navigate('home');
       })
       .catch((error) => {
         console.log("error", error)

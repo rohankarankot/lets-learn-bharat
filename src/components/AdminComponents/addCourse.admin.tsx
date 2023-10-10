@@ -1,25 +1,24 @@
-"use client"
-import Alert from "@/hoc/Alert/custum.alert"
-import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
-import { FormInput } from "@/hoc/Input/input.component"
-import DropdownList from "@/hoc/dropDown/drop.down"
-import { getDatabase, ref, set } from "firebase/database"
-import { initFlowbite } from "flowbite"
-import { useEffect, useMemo, useState } from "react"
-import ImageUploader from "react-image-upload"
-import * as Yup from "yup"
-import inputData from "../../mock-data/userInput.json"
+"use client";
+import Alert from "@/hoc/Alert/custum.alert";
+import { PrimaryBtn } from "@/hoc/CustomButton/Buttons";
+import { FormInput } from "@/hoc/Input/input.component";
+import DropdownList from "@/hoc/dropDown/drop.down";
+import { getDatabase, ref, set } from "firebase/database";
+import { initFlowbite } from "flowbite";
+import { useEffect, useMemo, useState } from "react";
+import * as Yup from "yup";
+import inputData from "../../mock-data/userInput.json";
 import {
   AddProductInterface,
   AddProductSchema,
-} from "./schemas/admin-schemas.schema"
+} from "./schemas/admin-schemas.schema";
 
 const data = [
   {
     name: "offer",
     type: [true, false],
   },
-]
+];
 const initialValues = {
   image: "",
   title: "",
@@ -30,58 +29,59 @@ const initialValues = {
   instituteName: "",
   rating: "",
   ratingCount: "",
-  id:""
-}
+  id: "",
+};
 const AddCourse = () => {
   const [addDataForm, setAddDataForm] =
-    useState<AddProductInterface>(initialValues)
-  const [validationErrors, setValidationErrors] = useState<any>({})
-  const [addSuccess, setAddSuccess] = useState(false)
-  const [hidden, setHidden] = useState(true)
+    useState<AddProductInterface>(initialValues);
+  const [validationErrors, setValidationErrors] = useState<any>({});
+  const [addSuccess, setAddSuccess] = useState(false);
+  const [hidden, setHidden] = useState(true);
   useEffect(() => {
-    initFlowbite()
-  }, [])
-  const id=useMemo(()=>{
-   return  Math.floor(Math.random() * 500)
-  },[addSuccess])
+    initFlowbite();
+  }, []);
+  const id = useMemo(() => {
+    return Math.floor(Math.random() * 500);
+  }, [addSuccess]);
   const handleChange = (e: any) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     // setAddDataForm({...addDataForm,id:id})
-    setAddDataForm({ ...addDataForm, [name]: value ,id:id})
-  }
-  console.log('id', id)
+    setAddDataForm({ ...addDataForm, [name]: value, id: id });
+  };
+  console.log("id", id);
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-  
-   
+    e.preventDefault();
+
     try {
-      await AddProductSchema.validate(addDataForm, { abortEarly: false })
-      const db = getDatabase()
-     await set(ref(db, '/courses/'+id ),addDataForm);
-      setAddSuccess(true)
-      setAddDataForm(initialValues)
-      setHidden(false)
+      await AddProductSchema.validate(addDataForm, { abortEarly: false });
+      const db = getDatabase();
+      await set(ref(db, "/courses/" + id), addDataForm);
+      setAddSuccess(true);
+      setAddDataForm(initialValues);
+      setHidden(false);
       setTimeout(() => {
-        setHidden(true)
-      }, 3000)
+        setHidden(true);
+      }, 3000);
     } catch (error) {
       // Validation failed, set the validation errors
       if (error instanceof Yup.ValidationError) {
-        const errors: { [key: string]: string } = {}
+        const errors: { [key: string]: string } = {};
         error.inner.forEach((err) => {
           if (err.path) {
-            errors[err.path] = err.message
+            errors[err.path] = err.message;
           }
-        })
-        setValidationErrors(errors)
+        });
+        setValidationErrors(errors);
       }
     }
-  }
+  };
 
-  const getImageFileObject = (file: any) => {
-   setAddDataForm({...addDataForm,image:file?.dataUrl})
-  }
+  const handleFileUploade = (e: any) => {
+    console.log("e", e.target);
+    const { value } = e.target.files[0];
+    console.log("imageUrl", value);
+    setAddDataForm({ ...addDataForm, image: value });
+  };
   return (
     <>
       {addSuccess && (
@@ -89,13 +89,14 @@ const AddCourse = () => {
           <Alert isHidden={hidden}>Success</Alert>
         </div>
       )}
-      <form className="flex flex-col items-center gap-4 mt-3 p-7  overflow-y-scroll scroll-auto h-screen">
+      <form className="flex flex-col items-center gap-4 mt-3 p-7  overflow-y-scroll scroll-auto h-screen w-[80%]">
         {inputData?.map((allInputData, index) => {
-          const name: any = allInputData.name
+          const name: any = allInputData.name;
           return allInputData.name === "image" ? (
-            <ImageUploader
-              onFileAdded={(img:any) => getImageFileObject(img)}
-              // onFileRemoved={(img) => runAfterImageDelete(img)}
+            <input
+              type="file"
+              onChange={(e) => handleFileUploade(e)}
+              value={addDataForm.image}
             />
           ) : index != 4 ? (
             <FormInput
@@ -131,7 +132,7 @@ const AddCourse = () => {
                 // isDisabled={!addDataForm.offer}
               />
             </div>
-          )
+          );
         })}
 
         <PrimaryBtn onClick={(e: any) => handleSubmit(e)} className="mt-5">
@@ -139,7 +140,7 @@ const AddCourse = () => {
         </PrimaryBtn>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default AddCourse
+export default AddCourse;

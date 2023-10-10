@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebase/firestore": "^4.2.0",
     "@reduxjs/toolkit": "^1.9.6",
     "@types/connect": "^3.4.36",
     "@types/firebase": "^3.2.1",
