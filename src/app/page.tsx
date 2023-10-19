@@ -3,7 +3,8 @@
 import DataComponent from "@/components/HomePages/DataComponent/CardData.component"
 import Header from "@/components/HomePages/Header/header.component"
 import Tab from "@/components/HomePages/Tab/tab.home.component"
-import { fetchCmsData } from "@/redux/slice/cmsData.slice"
+import { fetchCmsData } from "@/redux/slice/action"
+
 import "flowbite"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"

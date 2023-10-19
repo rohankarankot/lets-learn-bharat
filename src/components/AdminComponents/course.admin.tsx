@@ -1,5 +1,6 @@
 import Card from "@/hoc/Card/custum.card";
-import { deleteCmsData, fetchCmsData } from "@/redux/slice/cmsData.slice";
+
+import { deleteCmsData, fetchCmsData } from "@/redux/slice/action";
 import { getDatabase, ref, remove } from "firebase/database";
 import { initFlowbite } from "flowbite";
 import Image from "next/image";
