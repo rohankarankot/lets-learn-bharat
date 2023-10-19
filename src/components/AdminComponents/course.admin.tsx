@@ -1,6 +1,6 @@
 import Card from "@/hoc/Card/custum.card";
 
-import { deleteCmsData, fetchCmsData } from "@/redux/slice/action";
+import { deleteCmsData } from "@/redux/slice/action";
 import { getDatabase, ref, remove } from "firebase/database";
 import { initFlowbite } from "flowbite";
 import Image from "next/image";
@@ -19,7 +19,7 @@ const Course = () => {
   const  [selectedInittial,setSelectedInitial]=useState(); // Array to manage dropdown visibility for each card
   useEffect(() => {
     initFlowbite();
-   dispatch(fetchCmsData())
+  
   }, []);
   
   console.log('data',data )
