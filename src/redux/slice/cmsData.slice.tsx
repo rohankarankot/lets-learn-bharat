@@ -1,53 +1,37 @@
-import { CmsDataState } from "@/utils/declareType/type"
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { get, getDatabase, ref } from "firebase/database"
+import { createSlice } from "@reduxjs/toolkit";
+import { deleteCmsData, fetchCmsData } from "./action";
 
-const initialState: CmsDataState = {
+const initialState:any = {
   cmsData: [],
-}
-
-const CmsDataSlice = createSlice({
-  name: "cmsData",
-  initialState,
-  reducers: {
-    setAllCmsData(state, action: PayloadAction<any[]>) {
-      const data = action.payload;
-      state.cmsData= Object.values(data);
-    },
-   
-  },
-
-})
+  status: "idle", // Loading state
+  error: null, // Error state
+};
 
 // Define an async action creator to fetch data
-export const fetchCmsData = (): any => async (dispatch: any) => {
-  try {
-    // Reference to the data location in the Realtime Database
-    const db = getDatabase()
-    const cmsRef = await ref(db, "/courses") // Replace 'course' with your database path
 
-    // Use the `get` function to fetch data from the database
-    const snapshot = await get(cmsRef)
-    console.log("snapshot", snapshot)
-    if (snapshot.exists()) {
-      const data = snapshot.val()
-      console.log("data///", data)
-      dispatch(setAllCmsData(data))
-    } else {
-      console.log("No data available")
-    }
-  } catch (e) {
-    console.error("Error:", e)
-  }
-}
-export const  deleteData=(updateData:any):any=>async (dispatch:any)=>{
-try{
-  dispatch(setAllCmsData(updateData))
-}
-catch (e){
-  
-}
-}
-export const { setAllCmsData } = CmsDataSlice.actions
 
-export default CmsDataSlice.reducer
+const cmsDataSlice = createSlice({
+  name: "cmsData",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCmsData.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCmsData.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.cmsData = action.payload;
+      })
+      .addCase(fetchCmsData.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(deleteCmsData.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.cmsData = action.payload;
+      });
+  },
+});
+
+export default cmsDataSlice.reducer;

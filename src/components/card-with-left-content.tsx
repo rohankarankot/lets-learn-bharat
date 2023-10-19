@@ -169,10 +169,10 @@ const CardWithLeftContent = ({ data }: any) => {
                   isButton={true}
                   onClick={() => {}}
                 >
-                  {data?.primaryAction}
+                  Enroll Now
                 </SecondaryBtn>
               ) : (
-                <PrimaryBtn></PrimaryBtn>
+                <PrimaryBtn> Buy now</PrimaryBtn>
               )}
             </div>
           </div>

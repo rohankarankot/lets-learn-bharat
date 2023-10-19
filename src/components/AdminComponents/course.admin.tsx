@@ -1,5 +1,5 @@
 import Card from "@/hoc/Card/custum.card";
-import { deleteData, fetchCmsData } from "@/redux/slice/cmsData.slice";
+import { deleteCmsData, fetchCmsData } from "@/redux/slice/cmsData.slice";
 import { getDatabase, ref, remove } from "firebase/database";
 import { initFlowbite } from "flowbite";
 import Image from "next/image";
@@ -43,7 +43,7 @@ const Course = () => {
     // Update the component's state to remove the deleted course from the data array
     const updatedData = data.filter((courseData: any) => courseData.id !== selectedId);
     // Dispatch an action to update your Redux store with the updated data
-    dispatch(deleteData(updatedData));
+    dispatch(deleteCmsData(updatedData));
   })
   .catch((error) => {
     console.error("Error deleting course:", error);
