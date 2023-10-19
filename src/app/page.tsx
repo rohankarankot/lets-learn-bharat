@@ -14,7 +14,6 @@ export default function Home() {
   useEffect(() => {
     dispatch(fetchCmsData())
   }, [])
-console.log('data==', data)
   return (
     <>
       <div className="bg-pink">

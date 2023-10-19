@@ -15,7 +15,7 @@ import {
 
 const data = [
   {
-    name: "offer",
+    name: "free",
     type: [true, false],
   },
 ];
@@ -24,7 +24,7 @@ const initialValues = {
   title: "",
   time: "",
   price: "",
-  offer: false,
+  free: false,
   offerPrice: "",
   instituteName: "",
   rating: "",
@@ -34,6 +34,8 @@ const initialValues = {
 const AddCourse = () => {
   const [addDataForm, setAddDataForm] =
     useState<AddProductInterface>(initialValues);
+    const [image, setImage] = useState(null);
+    const [createObjectURL, setCreateObjectURL] = useState('');
   const [validationErrors, setValidationErrors] = useState<any>({});
   const [addSuccess, setAddSuccess] = useState(false);
   const [hidden, setHidden] = useState(true);
@@ -64,6 +66,7 @@ const AddCourse = () => {
       }, 3000);
     } catch (error) {
       // Validation failed, set the validation errors
+      console.log("error", error);
       if (error instanceof Yup.ValidationError) {
         const errors: { [key: string]: string } = {};
         error.inner.forEach((err) => {
@@ -77,11 +80,31 @@ const AddCourse = () => {
   };
 
   const handleFileUploade = (e: any) => {
-    console.log("e", e.target);
-    const { value } = e.target.files[0];
-    console.log("imageUrl", value);
-    setAddDataForm({ ...addDataForm, image: value });
+    const img=e.target.files[0];
+    setAddDataForm({ ...addDataForm, image:img?.name  });
   };
+  const uploadToClient = (event:any) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+
+      setImage(i);
+      setAddDataForm({...addDataForm,image:URL.createObjectURL(i)});
+    }
+  };
+
+  const uploadToServer = async (event:any) => {    
+    uploadToClient(event)
+    const body = new FormData();
+    // console.log("file", image)
+    body.append("file", addDataForm.image);    
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body
+    });
+    console.log('response', response)
+   // setAddDataForm({...addDataForm,image:response?.url})
+  };
+  console.log('addDataForm', addDataForm)
   return (
     <>
       {addSuccess && (
@@ -93,11 +116,7 @@ const AddCourse = () => {
         {inputData?.map((allInputData, index) => {
           const name: any = allInputData.name;
           return allInputData.name === "image" ? (
-            <input
-              type="file"
-              onChange={(e) => handleFileUploade(e)}
-              value={addDataForm.image}
-            />
+            <input type="file" onChange={(e) => uploadToServer(e)} />
           ) : index != 4 ? (
             <FormInput
               key={name}

@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { SecondaryBtn, LinkBtn } from "@/hoc/CustomButton/Buttons"
-import { CONSTANT, IMAGES } from "@/utils/constant"
-import React, { Fragment, useState } from "react"
-import data from "../mock-data/card.json"
-import { AddIcon, AddedIcon } from "./customIcon"
+import { LinkBtn, PrimaryBtn, SecondaryBtn } from "@/hoc/CustomButton/Buttons";
+import { CONSTANT, IMAGES } from "@/utils/constant";
+import { Fragment, useState } from "react";
+import { AddIcon, AddedIcon } from "./customIcon";
 // import Button from './CustomButton/Button.component'
 
 interface CardWithLeftContent {
-  tag: string
-  image: string
-  title: string
-  duration: string
-  price: string
-  offerPrice: string
-  instituteName: string
-  rating: string
-  ratingCount: string
-  primaryAction: string
-  ctaLabel: string
+  tag: string;
+  image: string;
+  title: string;
+  duration: string;
+  price: string;
+  offerPrice: string;
+  instituteName: string;
+  rating: string;
+  ratingCount: string;
+  primaryAction: string;
+  ctaLabel: string;
 }
 
 const CardWithLeftContent = ({ data }: any) => {
-  const [addItem, setAddItem] = useState<boolean>(false)
-  const [isHovering, setIsHovering] = useState<boolean>(false)
+  const [addItem, setAddItem] = useState<boolean>(false);
+  const [isHovering, setIsHovering] = useState<boolean>(false);
   const handleMouseOver = () => {
-    setIsHovering(true)
-  }
+    setIsHovering(true);
+  };
   const handleMouseOut = () => {
-    setIsHovering(false)
-  }
+    setIsHovering(false);
+  };
+  console.log("data", data);
   return (
     <Fragment>
       <div
@@ -55,7 +55,9 @@ const CardWithLeftContent = ({ data }: any) => {
               <div>
                 {data?.title && (
                   <div className="text-xl font-bold text-pepermint">
-                    {data?.title}
+                    {data.title.length > 20
+                      ? `${data.title.substring(0, 20)}...`
+                      : data?.title}
                   </div>
                 )}
                 {data?.duration && data?.time && (
@@ -159,15 +161,19 @@ const CardWithLeftContent = ({ data }: any) => {
               )}
             </div>
             <div className="flex justify-center py-7">
-              <SecondaryBtn
-                className="border-2 rounded-md border-bermuda py-2 px-7 cursor-pointer text-base font-bold"
-                fontSize="16px"
-                txtColor="bermunda"
-                isButton={true}
-                onClick={() => {}}
-              >
-                {data?.primaryAction}
-              </SecondaryBtn>
+              {data.free ? (
+                <SecondaryBtn
+                  className="border-2 rounded-md border-bermuda py-2 px-7 cursor-pointer text-base font-bold"
+                  fontSize="16px"
+                  txtColor="bermunda"
+                  isButton={true}
+                  onClick={() => {}}
+                >
+                  {data?.primaryAction}
+                </SecondaryBtn>
+              ) : (
+                <PrimaryBtn></PrimaryBtn>
+              )}
             </div>
           </div>
         </div>
@@ -176,13 +182,13 @@ const CardWithLeftContent = ({ data }: any) => {
           fontSize="16px"
           isButton={false}
           onClick={() => {
-            alert("clickyyyy")
+            alert("clickyyyy");
           }}
         >
           {data?.ctaLabel}
         </LinkBtn>
       </div>
     </Fragment>
-  )
-}
-export default CardWithLeftContent
+  );
+};
+export default CardWithLeftContent;

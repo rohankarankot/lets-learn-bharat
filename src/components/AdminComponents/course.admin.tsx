@@ -65,7 +65,7 @@ const Course = () => {
         {data?.map((courseData: any, index: any) => {
           return (
             <Card className="flex p-2 gap-2" key={index}>
-              <Image src={courseData?.image} height={120} width={120} alt="" />
+              <Image src={courseData?.image.toString()} height={120} width={120} alt="" />
               <div className="px-5" >
                 <div className="flex">
               <p className="">{courseData.title}</p>

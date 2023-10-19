@@ -5,7 +5,7 @@ export interface AddProductInterface {
   title: string;
   time: string;
   price: string;
-  offer: boolean;
+  free: boolean;
   offerPrice: string;
   instituteName: string;
   rating: string;

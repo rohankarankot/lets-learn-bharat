@@ -15,7 +15,7 @@ const DropdownList = ({data,setAddDataForm,addDataForm}:any) => {
         type="button"
         onClick={()=>setHidden(false)}
       >
-      { `Choose Free? ${addDataForm.offer &&addDataForm.offer}`}
+      { `Choose Free? ${addDataForm.free &&addDataForm.free}`}
         <svg
           className="w-2.5 h-2.5 ml-2.5"
           aria-hidden="true"
@@ -41,7 +41,7 @@ const DropdownList = ({data,setAddDataForm,addDataForm}:any) => {
           className="py-2 text-sm text-gray-700 dark:text-gray-200"
           aria-labelledby="dropdownDefaultButton"
         >
-          <li onClick={()=>{setAddDataForm({...addDataForm,offer:true}),setHidden(true)}}>
+          <li onClick={()=>{setAddDataForm({...addDataForm,free:true}),setHidden(true)}}>
             <Link
               href="#"
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -49,7 +49,7 @@ const DropdownList = ({data,setAddDataForm,addDataForm}:any) => {
               True
             </Link>
           </li>
-          <li onClick={()=>{setAddDataForm({...addDataForm,offer:false}),setHidden(true)}}>
+          <li onClick={()=>{setAddDataForm({...addDataForm,free:false}),setHidden(true)}}>
           <Link
               href="#"
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
