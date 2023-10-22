@@ -1,13 +1,14 @@
 import Card from "@/hoc/Card/custum.card"
 
 import { deleteCmsData, fetchCmsData } from "@/redux/slice/action"
-import { getDatabase, ref, remove } from "firebase/database"
+import { ref, remove } from "firebase/database"
 import { initFlowbite } from "flowbite"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import EditCourse from "./components/editCourse.course"
+import { Database } from "@/app/db/database"
 
 const Course = () => {
   const data = useSelector((state: any) => state.cmsData.cmsData)
@@ -22,7 +23,6 @@ const Course = () => {
     dispatch(fetchCmsData())
   }, [])
 
-
   const handleEditClick = () => {
     setIsEdit(true)
 
@@ -31,11 +31,9 @@ const Course = () => {
     setSelectedInitial(selectedData[0])
   }
   const handleDelete = () => {
-    const db = getDatabase()
-    const coursesRef = ref(db, `/courses/${selectedId}`)
+    const coursesRef = ref(Database(), `/courses/${selectedId}`)
     remove(coursesRef)
       .then(() => {
-
         // Update the component's state to remove the deleted course from the data array
         const updatedData = data.filter(
           (courseData: any) => courseData.id !== selectedId
@@ -43,8 +41,7 @@ const Course = () => {
         // Dispatch an action to update your Redux store with the updated data
         dispatch(deleteCmsData(updatedData))
       })
-      .catch((error) => {
-      })
+      .catch((error) => {})
   }
 
   const handleChange = async ({ id }: any, index: number) => {
