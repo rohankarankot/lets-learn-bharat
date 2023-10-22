@@ -1,14 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { deleteCmsData, fetchCmsData } from "./action";
+import { createSlice } from "@reduxjs/toolkit"
+import { deleteCmsData, fetchCmsData } from "./action"
 
-const initialState:any = {
+const initialState: any = {
   cmsData: [],
   status: "idle", // Loading state
   error: null, // Error state
-};
+}
 
 // Define an async action creator to fetch data
-
 
 const cmsDataSlice = createSlice({
   name: "cmsData",
@@ -17,21 +16,21 @@ const cmsDataSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCmsData.pending, (state) => {
-        state.status = "loading";
+        state.status = "loading"
       })
       .addCase(fetchCmsData.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.cmsData = action.payload;
+        state.status = "succeeded"
+        state.cmsData = action.payload
       })
       .addCase(fetchCmsData.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
+        state.status = "failed"
+        state.error = action.error.message
       })
       .addCase(deleteCmsData.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.cmsData = action.payload;
-      });
+        state.status = "succeeded"
+        state.cmsData = action.payload
+      })
   },
-});
+})
 
-export default cmsDataSlice.reducer;
+export default cmsDataSlice.reducer

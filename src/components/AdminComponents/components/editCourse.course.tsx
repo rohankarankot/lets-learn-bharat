@@ -3,35 +3,35 @@ import { getDatabase, ref, update } from "firebase/database"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import inputData from "../../../mock-data/userInput.json"
-import { AddProductInterface, AddProductSchema } from "../schemas/admin-schemas.schema"
+import {
+  AddProductInterface,
+  AddProductSchema,
+} from "../schemas/admin-schemas.schema"
 
 import { FormInput } from "@/hoc/Input/input.component"
 import DropdownList from "@/hoc/dropDown/drop.down"
-import ImageUploader from "react-image-upload"
 import * as Yup from "yup"
-const EditCourse = ({initialValues,id}:any) => {
- 
-  
+const EditCourse = ({ initialValues, id }: any) => {
   const [addDataForm, setAddDataForm] =
-  useState<AddProductInterface>(initialValues)
+    useState<AddProductInterface>(initialValues)
   const [validationErrors, setValidationErrors] = useState<any>({})
   const [addSuccess, setAddSuccess] = useState(false)
   const [hidden, setHidden] = useState(true)
   const data = useSelector((state: any) => state.cmsData.cmsData)
   const handleChange = (e: any) => {
-    const {name,value}=e.target
-    setAddDataForm({...addDataForm,[name]:value})
+    const { name, value } = e.target
+    setAddDataForm({ ...addDataForm, [name]: value })
   }
-  const getImageFileObject = (file:any) => {}
+  const getImageFileObject = (file: any) => {}
   const handleFileChange = () => {}
   console.log("initialValues2", initialValues)
-  const handleSubmit=async(e:any)=>{
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
-    
+
     try {
       await AddProductSchema.validate(addDataForm, { abortEarly: false })
       const db = getDatabase()
-      update(ref(db, '/courses/'+id ),addDataForm);
+      update(ref(db, "/courses/" + id), addDataForm)
       setAddSuccess(true)
       setAddDataForm(initialValues)
       setHidden(false)
@@ -53,16 +53,11 @@ const EditCourse = ({initialValues,id}:any) => {
   }
   return (
     <>
- 
-        
-        <form className="flex flex-col items-center gap-4 mt-3 p-7  h-screen">
+      <form className="flex flex-col items-center gap-4 mt-3 p-7  h-screen">
         {inputData?.map((allInputData, index) => {
           const name: any = allInputData.name
           return allInputData.name === "image" ? (
-            <ImageUploader
-              onFileAdded={(img:any) => getImageFileObject(img)}
-              // onFileRemoved={(img) => runAfterImageDelete(img)}
-            />
+            <input />
           ) : index != 4 ? (
             <FormInput
               key={name}
@@ -104,8 +99,7 @@ const EditCourse = ({initialValues,id}:any) => {
           Add To Database
         </PrimaryBtn>
       </form>
-      
-      </>
+    </>
   )
 }
 

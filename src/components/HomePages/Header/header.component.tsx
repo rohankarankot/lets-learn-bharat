@@ -4,6 +4,7 @@
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import Text from "@/hoc/CustomText/custom.component"
 import { SearchInput } from "@/hoc/Input/input.component"
+import Icon from "@/utils/icon/Icon"
 import { useState } from "react"
 
 const Header = () => {
@@ -13,10 +14,35 @@ const Header = () => {
     const { value } = event.target // You don't need to destructure event.target.value
     setSearchData(value)
   }
-  const handlePress = () => {}
+  const startListening = () => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition
+
+    const recognition = new SpeechRecognition()
+
+    recognition.onresult = (event) => {
+      console.log("Speech recognition result:", event)
+      const transcript = event.results[0][0].transcript
+      console.log("Recognized text:", transcript)
+      setSearchData(transcript)
+    }
+
+    recognition.onend = () => {
+      console.log("Speech recognition ended.")
+    }
+
+    recognition.onerror = (error) => {
+      console.error("Speech recognition error:", error)
+    }
+
+    recognition.start()
+  }
+
+  console.log(searchData, "000") 
+   const handlePress = () => {}
   return (
-    <div className="flex-1 bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
-      <div className="flex justify-center my-[37px] w-full ">
+    <div className="flex-1 flex flex-col bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
+      <div className="flex self-center my-[37px] w-[50%] h-[50px] ">
         <SearchInput //  use Custom input
           placeholder="Search for courses"
           name="search"
@@ -29,6 +55,14 @@ const Header = () => {
               alt="Search Icon"
             />
           } //prefix  here it is not compulsory
+          postFix={
+            <Icon
+              name="microphone"
+              size={30}
+              // onTouchStart={startListening}
+              onMouseDown={startListening}
+            />
+          }
         />
       </div>
       <div className="flex justify-center">

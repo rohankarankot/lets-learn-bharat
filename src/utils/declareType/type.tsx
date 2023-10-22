@@ -43,8 +43,9 @@ interface InputProps {
   error?: boolean
   helperText?: string
   rest?: any
-  ref?:MutableRefObject<any>
-  isDisabled?:boolean
+  ref?: MutableRefObject<any>
+  postFix?: any
+  isDisabled?: boolean
 }
 
 interface CustomTextProps {
@@ -64,4 +65,3 @@ interface CmsDataState {
 }
 
 export type { ButtonProps, CmsDataState, CustomTextProps, InputProps }
-

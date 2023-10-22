@@ -3,10 +3,8 @@ import { Size } from "@/utils/Size/screen.Size"
 
 import { useSelector } from "react-redux"
 const DataComponent = () => {
-
   const cmsData = useSelector((state: any) => state.cmsData.cmsData)
   const deviceSize = Size()
-
 
   return (
     <div

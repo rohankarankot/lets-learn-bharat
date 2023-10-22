@@ -1,4 +1,4 @@
-import { InputProps } from "@/utils/declareType/type";
+import { InputProps } from "@/utils/declareType/type"
 
 export const SearchInput = ({
   name,
@@ -6,7 +6,7 @@ export const SearchInput = ({
   prefix,
   value,
   onChange,
-
+  postFix,
   height,
   width,
 
@@ -14,23 +14,26 @@ export const SearchInput = ({
 }: InputProps) => {
   return (
     <div
-      className={`flex h-[7vh] w-[47vw]  items-center px-5 border-2 border-bermuda rounded-lg `}
+      className={`flex h-[100%] w-[100%]  items-center justify-between border-2 border-bermuda rounded-lg `}
     >
-      {prefix && <div className="">{prefix}</div>}
-      <input
-        {...rest}
-        // ref={ref}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className={
-          "w-[90%] h-full focus:outline-none placeholder-offWhite font-bold text-base pl-2 "
-        }
-      />
+      <div className="px-5 flex items-center ">
+        {prefix && <div className="">{prefix}</div>}
+        <input
+          {...rest}
+          // ref={ref}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={
+            "w-[90%] h-full focus:outline-none placeholder-offWhite font-bold text-base pl-2 "
+          }
+        />
+      </div>
+      <div className="mx-5" {...rest}>{postFix ? postFix : ""}</div>
     </div>
-  );
-};
+  )
+}
 
 export const FormInput = ({
   type,
@@ -62,5 +65,5 @@ export const FormInput = ({
         </h6>
       )}
     </div>
-  );
-};
+  )
+}
