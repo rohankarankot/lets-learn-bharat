@@ -4,15 +4,20 @@
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import Text from "@/hoc/CustomText/custom.component"
 import { SearchInput } from "@/hoc/Input/input.component"
+import { fetchCmsData, filteredData } from "@/redux/slice/action"
 import Icon from "@/utils/icon/Icon"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 
 const Header = () => {
-  const [searchData, setSearchData] = useState("")
-
+  const [searchData, setSearchData] = useState<any>("")
+  const dispatch = useDispatch()
+  const cmsData = useSelector((state: any) => state.cmsData.cmsData)
   const handleChange = (event: any) => {
     const { value } = event.target // You don't need to destructure event.target.value
     setSearchData(value)
+    dispatch(filteredData({ value: searchData, allCmsData: cmsData }))
   }
   const startListening = () => {
     const SpeechRecognition =
@@ -38,8 +43,8 @@ const Header = () => {
     recognition.start()
   }
 
-  console.log(searchData, "000") 
-   const handlePress = () => {}
+  console.log(searchData, "000")
+  const handlePress = () => {}
   return (
     <div className="flex-1 flex flex-col bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
       <div className="flex self-center my-[37px] w-[50%] h-[50px] ">

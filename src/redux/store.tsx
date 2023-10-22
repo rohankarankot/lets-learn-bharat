@@ -4,7 +4,8 @@ import localStorage from "redux-persist/es/storage"
 import AuthSlice from "./slice/authentication.slice"
 import CmsDataSlice from "./slice/cmsData.slice"
 // import CmsDataSlice, { fetchCmsData } from "./slice/cmsData.slice"
-import { setupListeners } from '@reduxjs/toolkit/query'
+import { setupListeners } from "@reduxjs/toolkit/query"
+import { fetchCmsData } from "./slice/action"
 
 const persistConfig = {
   key: "root",
@@ -21,7 +22,7 @@ export const store = configureStore({
   reducer: persistedReducer,
 })
 export const persistor = persistStore(store)
-setupListeners(store.dispatch);
-// store.dispatch(fetchCmsData)
+setupListeners(store.dispatch)
+// store.dispatch(fetchCmsData())
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

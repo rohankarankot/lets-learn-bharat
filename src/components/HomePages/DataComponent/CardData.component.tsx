@@ -1,9 +1,11 @@
 import CardWithLeftContent from "@/components/card-with-left-content"
 import { Size } from "@/utils/Size/screen.Size"
+import { useDispatch } from "react-redux"
 
 import { useSelector } from "react-redux"
 const DataComponent = () => {
-  const cmsData = useSelector((state: any) => state.cmsData.cmsData)
+  const { cmsData, searchData } = useSelector((state: any) => state.cmsData)
+  const dispatch = useDispatch()
   const deviceSize = Size()
 
   return (
@@ -13,7 +15,7 @@ const DataComponent = () => {
       } flex-wrap justify-center w-full pb-[30px]`}
     >
       {cmsData ? (
-        cmsData.map((data: any) => (
+        (searchData ? searchData : cmsData).map((data: any) => (
           <CardWithLeftContent data={data} key={data.id} />
         ))
       ) : (

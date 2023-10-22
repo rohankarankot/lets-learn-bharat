@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { deleteCmsData, fetchCmsData } from "./action"
+import { deleteCmsData, fetchCmsData, filteredData } from "./action"
 
 const initialState: any = {
   cmsData: [],
   status: "idle", // Loading state
-  error: null, // Error state
+  error: null,
+  searchData: [], // Error state
 }
 
 // Define an async action creator to fetch data
@@ -29,6 +30,10 @@ const cmsDataSlice = createSlice({
       .addCase(deleteCmsData.fulfilled, (state, action) => {
         state.status = "succeeded"
         state.cmsData = action.payload
+      })
+      .addCase(filteredData.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        state.searchData = action.payload
       })
   },
 })
