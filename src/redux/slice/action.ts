@@ -1,10 +1,11 @@
+import { Database } from "@/app/db/database";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { get, getDatabase, ref, remove } from "firebase/database";
 import { useSelector } from "react-redux";
 
 export const fetchCmsData:any = createAsyncThunk("cmsData/fetchCmsData", async (data:any) => {
-    const db = getDatabase();
-    const cmsRef = ref(db, "/courses"); // Replace with your database path
+   
+    const cmsRef = ref(Database(), "/courses"); // Replace with your database path
   
     const snapshot = await get(cmsRef);
      if(data){

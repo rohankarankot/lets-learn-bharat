@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 const DataComponent = () => {
   const { cmsData, searchData } = useSelector((state: any) => state.cmsData)
-  const dispatch = useDispatch()
   const deviceSize = Size()
 
   return (

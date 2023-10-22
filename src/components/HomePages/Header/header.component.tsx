@@ -4,9 +4,9 @@
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import Text from "@/hoc/CustomText/custom.component"
 import { SearchInput } from "@/hoc/Input/input.component"
-import { fetchCmsData, filteredData } from "@/redux/slice/action"
+import { filteredData } from "@/redux/slice/action"
 import Icon from "@/utils/icon/Icon"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 
@@ -26,24 +26,17 @@ const Header = () => {
     const recognition = new SpeechRecognition()
 
     recognition.onresult = (event) => {
-      console.log("Speech recognition result:", event)
       const transcript = event.results[0][0].transcript
-      console.log("Recognized text:", transcript)
       setSearchData(transcript)
     }
 
-    recognition.onend = () => {
-      console.log("Speech recognition ended.")
-    }
+    recognition.onend = () => {}
 
-    recognition.onerror = (error) => {
-      console.error("Speech recognition error:", error)
-    }
+    recognition.onerror = (error) => {}
 
     recognition.start()
   }
 
-  console.log(searchData, "000")
   const handlePress = () => {}
   return (
     <div className="flex-1 flex flex-col bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
