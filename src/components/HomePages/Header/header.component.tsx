@@ -1,17 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
+import Alert from "@/hoc/Alert/custum.alert"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import Text from "@/hoc/CustomText/custom.component"
 import { SearchInput } from "@/hoc/Input/input.component"
 import { filteredData } from "@/redux/slice/action"
 import Icon from "@/utils/icon/Icon"
-import {  useState } from "react"
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
+import { Equiliser } from "@/utils/loader"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 const Header = () => {
   const [searchData, setSearchData] = useState<any>("")
+  const [loading, setLoading] = useState(false)
+  const [hidden, isHidden] = useState(true)
   const dispatch = useDispatch()
   const cmsData = useSelector((state: any) => state.cmsData.cmsData)
   const handleChange = (event: any) => {
@@ -20,6 +23,7 @@ const Header = () => {
     dispatch(filteredData({ value: searchData, allCmsData: cmsData }))
   }
   const startListening = () => {
+    setLoading(true);
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition
 
@@ -28,11 +32,23 @@ const Header = () => {
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript
       setSearchData(transcript)
+      setLoading(false)
+      
     }
 
     recognition.onend = () => {}
 
-    recognition.onerror = (error) => {}
+    recognition.onerror = (error) => {
+      isHidden(true)
+      setLoading(false)
+      alert("Error")
+    return   <Alert>
+        {
+          error
+        }
+        </Alert>
+
+    }
 
     recognition.start()
   }
@@ -54,12 +70,17 @@ const Header = () => {
             />
           } //prefix  here it is not compulsory
           postFix={
+            <div className="items-center">
             <Icon
               name="microphone"
               size={30}
               // onTouchStart={startListening}
               onMouseDown={startListening}
             />
+            {
+               loading ? <div className="h-2"><Equiliser/></div> :""
+            }
+            </div>
           }
         />
       </div>
