@@ -8,7 +8,7 @@ const PopularTab = () => {
     },[])
   return (
     <div className=" flex justify-evenly items-center h-[155px] w-full  shadow:[rgba(44, 117, 117, 0.5)] ">
-      <div className="text-SurfieGreen">Popular courses</div>
+      <div className="text-SurfieGreen  font-[700] text-[20px]">Popular courses</div>
       <div className="flex items-center  text-SurfieGreen gap-2">
         <div>
           <input
