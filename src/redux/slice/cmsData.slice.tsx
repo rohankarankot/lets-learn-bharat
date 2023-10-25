@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { deleteCmsData, fetchCmsData, filteredData } from "./action"
+import { deleteCmsData, fetchCmsData } from "./action"
 
 const initialState: any = {
   cmsData: [],
@@ -31,10 +31,7 @@ const cmsDataSlice = createSlice({
         state.status = "succeeded"
         state.cmsData = action.payload
       })
-      .addCase(filteredData.fulfilled, (state, action) => {
-        state.status = "succeeded"
-        state.searchData = action.payload
-      })
+    
   },
 })
 
