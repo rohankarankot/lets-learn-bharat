@@ -148,11 +148,3 @@ const PopularTab = () => {
 };
 
 export default PopularTab;
-// Font
-// Inria Sans
-// Weight
-// 700
-// Size
-// 40px
-// Line height
-// 47.96px
