@@ -29,7 +29,6 @@ const CardWithLeftContent = ({ data }: any) => {
   const handleMouseOut = () => {
     setIsHovering(false);
   };
-  console.log("data", data);
   return (
     <Fragment>
       <div
