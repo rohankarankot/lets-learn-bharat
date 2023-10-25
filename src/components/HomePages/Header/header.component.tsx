@@ -5,7 +5,6 @@ import Alert from "@/hoc/Alert/custum.alert"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import Text from "@/hoc/CustomText/custom.component"
 import { SearchInput } from "@/hoc/Input/input.component"
-import { filteredData } from "@/redux/slice/action"
 import Icon from "@/utils/icon/Icon"
 import { Equiliser } from "@/utils/loader"
 import { useState } from "react"
@@ -20,7 +19,7 @@ const Header = () => {
   const handleChange = (event: any) => {
     const { value } = event.target // You don't need to destructure event.target.value
     setSearchData(value)
-    dispatch(filteredData({ value: searchData, allCmsData: cmsData }))
+    // dispatch(filteredData({ value: searchData, allCmsData: cmsData }))
   }
   const startListening = () => {
     setLoading(true);
