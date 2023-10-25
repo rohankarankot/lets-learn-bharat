@@ -1,4 +1,5 @@
 import { initFlowbite } from "flowbite";
+import Link from "next/link";
 import { useEffect } from "react";
 
 const PopularTab = () => {
@@ -7,8 +8,8 @@ const PopularTab = () => {
     },[])
   return (
     <div className=" flex justify-evenly items-center h-[155px] w-full  shadow:[rgba(44, 117, 117, 0.5)] ">
-      <div className="">Popular courses</div>
-      <div className="flex items-center  text-[#0E8585] gap-2">
+      <div className="text-SurfieGreen">Popular courses</div>
+      <div className="flex items-center  text-SurfieGreen gap-2">
         <div>
           <input
             id="bordered-checkbox-1"
@@ -33,7 +34,7 @@ const PopularTab = () => {
         <button
           id="multiLevelDropdownButton"
           data-dropdown-toggle="dropdown"
-          className="text-[#0E8585] focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center "
+          className="text-[SurfieGreen] focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center "
           type="button"
         >
           Dropdown button{" "}
@@ -63,12 +64,12 @@ const PopularTab = () => {
             aria-labelledby="multiLevelDropdownButton"
           >
             <li>
-              <a
+              <Link
                 href="#"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Dashboard
-              </a>
+              </Link>
             </li>
             <li>
               <button
@@ -104,36 +105,36 @@ const PopularTab = () => {
                   aria-labelledby="doubleDropdownButton"
                 >
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Overview
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       My downloads
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Billing
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Rewards
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
