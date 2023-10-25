@@ -33,15 +33,18 @@ const DataComponent = () => {
 
   responsive={responsive}
   className="px-12 justify-evenly"
-  autoPlay={true}
+  //  infinite
+  // autoPlay={true}
   autoPlaySpeed={3000}
   transitionDuration={500}
   keyBoardControl={true}
   customTransition="all .5"
   containerClass="carousel-container"
+   arrows={true}
+   
 >
 {cmsData ? (
-  (searchData ? searchData : cmsData).map((data: any) => (
+  ( cmsData).map((data: any) => (
     <CardWithLeftContent data={data} key={data.id} />
   ))
 ) : (
