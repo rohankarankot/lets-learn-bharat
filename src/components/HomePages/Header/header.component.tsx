@@ -6,12 +6,13 @@ import Text from "@/hoc/CustomText/custom.component"
 import { SearchInput } from "@/hoc/Input/input.component"
 import { filteredData } from "@/redux/slice/action"
 import Icon from "@/utils/icon/Icon"
-import {  useState } from "react"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 
 const Header = () => {
   const [searchData, setSearchData] = useState<any>("")
+  const [process, SetProcess] = useState(false)
   const dispatch = useDispatch()
   const cmsData = useSelector((state: any) => state.cmsData.cmsData)
   const handleChange = (event: any) => {
@@ -24,23 +25,26 @@ const Header = () => {
       window.SpeechRecognition || window.webkitSpeechRecognition
 
     const recognition = new SpeechRecognition()
-
+    recognition.onstart = () => {
+      SetProcess(true)
+    }
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript
       setSearchData(transcript)
     }
 
-    recognition.onend = () => {}
+    recognition.onend = () => {
+      SetProcess(false)
+    }
 
     recognition.onerror = (error) => {}
-
+    SetProcess(false)
     recognition.start()
   }
-
   const handlePress = () => {}
   return (
     <div className="flex-1 flex flex-col bg-[url('/images/vector-image.png')] bg-cover bg-center h-[65.22210184182015vh]  w-['100%']">
-      <div className="flex self-center my-[37px] w-[50%] h-[50px] ">
+      <div className="self-center my-[37px] w-[50%] h-[50px] ">
         <SearchInput //  use Custom input
           placeholder="Search for courses"
           name="search"
@@ -62,6 +66,9 @@ const Header = () => {
             />
           }
         />
+        <div className="flex justify-center w-[100%] ">
+          {process && <Icon name="lisining" size={40} />}
+        </div>
       </div>
       <div className="flex justify-center">
         <Text
