@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
+import Alert from "@/hoc/Alert/custum.alert"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import Text from "@/hoc/CustomText/custom.component"
 import { SearchInput } from "@/hoc/Input/input.component"
-import { filteredData } from "@/redux/slice/action"
 import Icon from "@/utils/icon/Icon"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
@@ -18,7 +18,7 @@ const Header = () => {
   const handleChange = (event: any) => {
     const { value } = event.target // You don't need to destructure event.target.value
     setSearchData(value)
-    dispatch(filteredData({ value: searchData, allCmsData: cmsData }))
+    // dispatch(filteredData({ value: searchData, allCmsData: cmsData }))
   }
   const startListening = () => {
     const SpeechRecognition =
@@ -58,12 +58,14 @@ const Header = () => {
             />
           } //prefix  here it is not compulsory
           postFix={
-            <Icon
-              name="microphone"
-              size={30}
-              // onTouchStart={startListening}
-              onMouseDown={startListening}
-            />
+            <div className="items-center">
+              <Icon
+                name="microphone"
+                size={30}
+                // onTouchStart={startListening}
+                onMouseDown={startListening}
+              />
+            </div>
           }
         />
         <div className="flex justify-center w-[100%] ">

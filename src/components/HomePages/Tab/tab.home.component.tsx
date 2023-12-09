@@ -73,10 +73,7 @@ const Tab = () => {
           </ul>
         )}
       </div>
-      <div>
-        {/* useing Custom Text  */}
-        <Text text="Popular courses" textType="h1" className="text-2xl" />
-      </div>
+     
     </div>
   )
 }

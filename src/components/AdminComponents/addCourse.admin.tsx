@@ -1,4 +1,5 @@
 "use client"
+import { Database } from "@/app/db/database"
 import Alert from "@/hoc/Alert/custum.alert"
 import { PrimaryBtn } from "@/hoc/CustomButton/Buttons"
 import { FormInput } from "@/hoc/Input/input.component"
@@ -12,7 +13,6 @@ import {
   AddProductInterface,
   AddProductSchema,
 } from "./schemas/admin-schemas.schema"
-import { Database } from "@/app/db/database"
 
 const data = [
   {
@@ -31,6 +31,7 @@ const initialValues = {
   rating: "",
   ratingCount: "",
   id: "",
+  isCertification:false,
 }
 const AddCourse = () => {
   const [addDataForm, setAddDataForm] =
@@ -44,9 +45,9 @@ const AddCourse = () => {
   const id = useMemo(() => {
     return Math.floor(Math.random() * 500)
   }, [addSuccess])
+  console.log(addDataForm.isCertification,addDataForm.free,"===")
   const handleChange = (e: any) => {
     const { name, value } = e.target
-    // setAddDataForm({...addDataForm,id:id})
     setAddDataForm({ ...addDataForm, [name]: value, id: id })
   }
   const handleSubmit = async (e: React.FormEvent) => {
@@ -76,10 +77,6 @@ const AddCourse = () => {
     }
   }
 
-  const handleFileUploade = (e: any) => {
-    const img = e.target.files[0]
-    setAddDataForm({ ...addDataForm, image: img?.name })
-  }
   const uploadToClient = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0]
@@ -108,9 +105,10 @@ const AddCourse = () => {
         {inputData?.map((allInputData, index) => {
           const name: any = allInputData.name
           return allInputData.name === "image" ? (
-            <input type="file" onChange={(e) => uploadToServer(e)} />
-          ) : index != 4 ? (
+            <input type="file" onChange={(e) => uploadToServer(e)}  />
+          ) : allInputData.type !=="dropDown" ? (
             <FormInput
+           
               key={name}
               error={
                 validationErrors?.[name as keyof AddProductInterface]?.length >
@@ -125,23 +123,13 @@ const AddCourse = () => {
               className="w-[50%] bg-silver"
             />
           ) : (
-            <div className="flex  w-[50%]">
+            <div className="w-full bg-silver">
               <DropdownList
-                data={data}
-                setAddDataForm={setAddDataForm}
-                addDataForm={addDataForm}
-              />
-              <FormInput
-                error={validationErrors?.offerPrice?.length > 0}
-                helperText={validationErrors?.offerPrice}
-                name="offerPrice"
-                type="text"
-                // /type={addDataForm.offer?"text":'hidden'}
-                onChange={(e: any) => handleChange(e)}
-                placeholder="Enter offer price "
-                value={addDataForm.offerPrice}
-                // isDisabled={!addDataForm.offer}
-              />
+            data={allInputData}
+            setAddDataForm={setAddDataForm}
+            addDataForm={addDataForm}
+            style={"w-[50%] bg-silve"}
+          />
             </div>
           )
         })}

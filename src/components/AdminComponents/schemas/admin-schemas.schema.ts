@@ -11,6 +11,7 @@ export interface AddProductInterface {
   rating: string;
   ratingCount: string;
   id:any;
+  isCertification:boolean
 }
 
 export const AddProductSchema = Yup.object().shape({
@@ -24,4 +25,5 @@ export const AddProductSchema = Yup.object().shape({
   instituteName: Yup.string().required("Institute name is required"),
   rating: Yup.string().required("Rating is required"),
   ratingCount: Yup.string().required("Rating count is required"),
+  isCertification:Yup.string().required("Certification is required ")
 });

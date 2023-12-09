@@ -1,6 +1,5 @@
-import React from "react"
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div
       style={{
@@ -20,4 +19,16 @@ const Loader = () => {
   )
 }
 
-export default Loader
+export const Equiliser=()=>{
+  return (
+    <div
+    style={{
+     
+      color:"red",
+     
+    }}
+    >
+      <img src="./Equalizer.gif" alt="loader"  className="h-[20px] bg-purple-500 " />
+    </div>
+  )
+}

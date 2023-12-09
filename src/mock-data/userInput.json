@@ -25,7 +25,10 @@
     "ref": false
   },
   {
-
+    "name": "free",
+    "type": "dropDown",
+    "placeholder": "Enter for free",
+    "ref": false
   },
   {
     "name": "rating",
@@ -37,6 +40,12 @@
     "name": "ratingCount",
     "type": "text",
     "placeholder": "Enter Rating Count",
+    "ref": false
+  },
+  {
+    "name": "isCertification",
+    "type": "dropDown",
+    "placeholder": "Enter Cirtification",
     "ref": false
   },
   {

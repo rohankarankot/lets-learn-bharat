@@ -3,6 +3,7 @@
 import DataComponent from "@/components/HomePages/DataComponent/CardData.component"
 import Header from "@/components/HomePages/Header/header.component"
 import Tab from "@/components/HomePages/Tab/tab.home.component"
+import PopularTab from "@/components/HomePages/popularSearchTAb/popularTab.homepage.component"
 import { fetchCmsData } from "@/redux/slice/action"
 
 import "flowbite"
@@ -20,6 +21,7 @@ export default function Home() {
       <div className="bg-pink">
         <Header />
         <Tab />
+        <PopularTab/>
         <DataComponent />
       </div>
     </>

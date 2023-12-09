@@ -1,4 +1,5 @@
 import { InputProps } from "@/utils/declareType/type"
+import { nanoid } from "@reduxjs/toolkit"
 
 export const SearchInput = ({
   name,
@@ -50,7 +51,7 @@ export const FormInput = ({
   ...rest
 }: InputProps) => {
   return (
-    <div className="w-full">
+    <div className="w-full" id={nanoid.toString()}>
       <input
         type={type}
         {...rest}

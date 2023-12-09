@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 const Icon = ({ name, size, ...rest }: any) => {
   const [icon, seticon] = useState<string>("")
@@ -12,7 +12,7 @@ const Icon = ({ name, size, ...rest }: any) => {
     }
   }, [])
 
-  return <Image src={icon} height={size} width={size} {...rest} />
+  return <Image src={icon} height={size} width={size} {...rest} alt="no icon avaliable" />
 }
 
 export default Icon
