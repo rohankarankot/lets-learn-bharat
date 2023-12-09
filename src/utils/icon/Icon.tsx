@@ -7,6 +7,8 @@ const Icon = ({ name, size, ...rest }: any) => {
     switch (name) {
       case "microphone":
         return seticon("/images/microphone.png")
+      case "lisining":
+        return seticon("/YdBO.gif")
     }
   }, [])
 
