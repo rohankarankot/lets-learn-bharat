@@ -14,9 +14,9 @@ export const SearchInput = ({
 }: InputProps) => {
   return (
     <div
-      className={`flex h-[100%] w-[100%]  items-center justify-between border-2 border-bermuda rounded-lg `}
+      className={`flex h-[100%] w-[100%]  items-center  border-2 border-bermuda rounded-lg `}
     >
-      <div className="px-5 flex items-center ">
+      <div className="px-5 flex items-center w-[100%]">
         {prefix && <div className="">{prefix}</div>}
         <input
           {...rest}
@@ -26,11 +26,13 @@ export const SearchInput = ({
           value={value}
           onChange={onChange}
           className={
-            "w-[90%] h-full focus:outline-none placeholder-offWhite font-bold text-base pl-2 "
+            "w-full h-full focus:outline-none placeholder-offWhite font-bold text-base pl-2 "
           }
         />
       </div>
-      <div className="mx-5" {...rest}>{postFix ? postFix : ""}</div>
+      <div className="mx-5" {...rest}>
+        {postFix ? postFix : ""}
+      </div>
     </div>
   )
 }
