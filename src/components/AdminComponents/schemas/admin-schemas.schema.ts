@@ -5,11 +5,13 @@ export interface AddProductInterface {
   title: string;
   time: string;
   price: string;
-  offer: boolean;
+  free: boolean;
   offerPrice: string;
   instituteName: string;
   rating: string;
   ratingCount: string;
+  id:any;
+  isCertification:boolean
 }
 
 export const AddProductSchema = Yup.object().shape({
@@ -23,4 +25,5 @@ export const AddProductSchema = Yup.object().shape({
   instituteName: Yup.string().required("Institute name is required"),
   rating: Yup.string().required("Rating is required"),
   ratingCount: Yup.string().required("Rating count is required"),
+  isCertification:Yup.string().required("Certification is required ")
 });

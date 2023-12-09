@@ -1,4 +1,5 @@
-import { InputProps } from "@/utils/declareType/type";
+import { InputProps } from "@/utils/declareType/type"
+import { nanoid } from "@reduxjs/toolkit"
 
 export const SearchInput = ({
   name,
@@ -6,7 +7,7 @@ export const SearchInput = ({
   prefix,
   value,
   onChange,
-
+  postFix,
   height,
   width,
 
@@ -14,23 +15,28 @@ export const SearchInput = ({
 }: InputProps) => {
   return (
     <div
-      className={`flex h-[7vh] w-[47vw]  items-center px-5 border-2 border-bermuda rounded-lg `}
+      className={`flex h-[100%] w-[100%]  items-center  border-2 border-bermuda rounded-lg `}
     >
-      {prefix && <div className="">{prefix}</div>}
-      <input
-        {...rest}
-        // ref={ref}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className={
-          "w-[90%] h-full focus:outline-none placeholder-offWhite font-bold text-base pl-2 "
-        }
-      />
+      <div className="px-5 flex items-center w-[100%]">
+        {prefix && <div className="">{prefix}</div>}
+        <input
+          {...rest}
+          // ref={ref}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={
+            "w-full h-full focus:outline-none placeholder-offWhite font-bold text-base pl-2 "
+          }
+        />
+      </div>
+      <div className="mx-5" {...rest}>
+        {postFix ? postFix : ""}
+      </div>
     </div>
-  );
-};
+  )
+}
 
 export const FormInput = ({
   type,
@@ -45,7 +51,7 @@ export const FormInput = ({
   ...rest
 }: InputProps) => {
   return (
-    <div className="w-full">
+    <div className="w-full" id={nanoid.toString()}>
       <input
         type={type}
         {...rest}
@@ -62,5 +68,5 @@ export const FormInput = ({
         </h6>
       )}
     </div>
-  );
-};
+  )
+}

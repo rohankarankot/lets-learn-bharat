@@ -1,8 +1,8 @@
 "use client"
 
 import { Router } from "next/router"
-import { useState, useEffect } from "react"
-import Loader from "./loader"
+import { useEffect, useState } from "react"
+import { Loader } from "./loader"
 
 export const PageTransitionLoader = () => {
   const [loading, setLoading] = useState(false)
